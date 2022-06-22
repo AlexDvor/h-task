@@ -14,7 +14,6 @@ export default function NavBar() {
             <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search" />
             <Button variant="outline-success">Search</Button>
           </Form>
-          <Button variant="primary">Primary</Button>{' '}
         </Navbar.Collapse>
       </Container>
     </Navbar>
