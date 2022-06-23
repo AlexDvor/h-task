@@ -4,7 +4,7 @@ export default function NavBar() {
   return (
     <Navbar bg="light" expand="lg" className=" navbar-dark bg-dark">
       <Container fluid>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="#home">OM</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="btn-sm" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

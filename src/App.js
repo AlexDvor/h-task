@@ -1,8 +1,12 @@
 import './App.css';
-import NavBar from './components/NavBar/NavBar';
+import LoginPage from 'pages/LogInPage';
 
 function App() {
-  return <NavBar> </NavBar>;
+  return (
+    <>
+      <LoginPage />
+    </>
+  );
 }
 
 export default App;
