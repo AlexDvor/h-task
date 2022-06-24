@@ -1,0 +1,89 @@
+.wrapperCard {
+  margin-left: auto;
+  margin-right: auto;
+  height: 385px;
+  max-width: 400px;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.cardTitle {
+  color: white;
+  padding: 10px 20px;
+  font-size: 25px !important;
+}
+
+.socialIcon span {
+  font-size: 45px;
+  margin-left: 10px;
+  color: #ffc312;
+}
+
+.socialIcon span:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.cardHeader {
+  position: relative;
+}
+
+.socialIcon {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 20px;
+  top: -30px;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+}
+
+.inputGroup span {
+  background-color: #ffc312 !important;
+  width: 45px;
+  border: none;
+}
+
+.buttonsWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.inputField:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
+}
+
+.loginBtn {
+  color: black !important;
+  background-color: #ffc312 !important;
+  width: 100px;
+  border: none !important;
+}
+
+.isLoadingBtn {
+  height: 35px;
+  display: flex;
+  width: 114px;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginBtn:hover {
+  background-color: white !important;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.signUpLink {
+  margin-left: 6px !important;
+}
+.passwordLink {
+  margin: 0px !important;
+}
