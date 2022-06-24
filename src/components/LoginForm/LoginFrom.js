@@ -45,7 +45,7 @@ export default function LoginForm() {
           <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <InputGroup className={`${s.inputGroup}`}>
               <InputGroup.Text>
-                <i className="fas fa-user"></i>
+                <i className="fas fa-envelope"></i>
               </InputGroup.Text>
               <Form.Control
                 required
@@ -57,7 +57,7 @@ export default function LoginForm() {
                 className={`${s.inputField}`}
               />
               <Form.Control.Feedback type="invalid">
-                Introduzca una dirección de correo electrónico válida!
+                Please enter a valid email address!
               </Form.Control.Feedback>
               <Form.Control.Feedback type="valid">Perfecto!</Form.Control.Feedback>
             </InputGroup>
@@ -70,14 +70,12 @@ export default function LoginForm() {
                 required
                 type="password"
                 placeholder="password"
-                autoComplete="true "
+                autoComplete
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 className={`${s.inputField}`}
               />
-              <Form.Control.Feedback type="invalid">
-                Este campo es obligatorio
-              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">This field is required!</Form.Control.Feedback>
               <Form.Control.Feedback type="valid">Perfecto!</Form.Control.Feedback>
             </InputGroup>
 

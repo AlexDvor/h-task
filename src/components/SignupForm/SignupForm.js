@@ -3,6 +3,8 @@ import { Form, Button, Spinner, Card, InputGroup } from 'react-bootstrap';
 import s from './SignupForm.module.css';
 
 export default function LoginForm() {
+  const [name, setName] = useState('');
+  const [surname, setSurName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(false);
@@ -18,7 +20,7 @@ export default function LoginForm() {
     }
 
     setLoading(true);
-    console.log({ email, password });
+    console.log({ name, surname, email, password });
   };
 
   return (
@@ -49,6 +51,41 @@ export default function LoginForm() {
               </InputGroup.Text>
               <Form.Control
                 required
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                className={`${s.inputField}`}
+              />
+              <Form.Control.Feedback type="invalid">Please enter your name!</Form.Control.Feedback>
+              <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback>
+            </InputGroup>
+            {/*  */}
+            <InputGroup className={`${s.inputGroup}`}>
+              <InputGroup.Text>
+                <i className="fas fa-user-tie"></i>
+              </InputGroup.Text>
+              <Form.Control
+                required
+                type="text"
+                placeholder="Surname"
+                value={surname}
+                onChange={e => setSurName(e.target.value)}
+                className={`${s.inputField}`}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please enter your surname!
+              </Form.Control.Feedback>
+              <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback>
+            </InputGroup>
+
+            {/*  */}
+            <InputGroup className={`${s.inputGroup}`}>
+              <InputGroup.Text>
+                <i className="fas fa-envelope"></i>
+              </InputGroup.Text>
+              <Form.Control
+                required
                 type="email"
                 placeholder="email"
                 autoComplete="true "
@@ -57,9 +94,9 @@ export default function LoginForm() {
                 className={`${s.inputField}`}
               />
               <Form.Control.Feedback type="invalid">
-                Introduzca una dirección de correo electrónico válida!
+                Please enter a valid email address!
               </Form.Control.Feedback>
-              <Form.Control.Feedback type="valid">Perfecto!</Form.Control.Feedback>
+              <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback>
             </InputGroup>
 
             <InputGroup className={`${s.inputGroup}`}>
@@ -75,10 +112,8 @@ export default function LoginForm() {
                 onChange={e => setPassword(e.target.value)}
                 className={`${s.inputField}`}
               />
-              <Form.Control.Feedback type="invalid">
-                Este campo es obligatorio
-              </Form.Control.Feedback>
-              <Form.Control.Feedback type="valid">Perfecto!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">This field is required!</Form.Control.Feedback>
+              <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback>
             </InputGroup>
 
             <div className={`${s.buttonsWrapper}`}>
@@ -98,7 +133,7 @@ export default function LoginForm() {
               ) : (
                 <>
                   <Button className={`${s.loginBtn}`} type="submit">
-                    Login
+                    Sign Up
                   </Button>
                 </>
               )}
@@ -108,9 +143,9 @@ export default function LoginForm() {
 
         <Card.Footer>
           <div className={`${s.links}`}>
-            Don't have an account?
+            You are already registered?
             <Card.Link className={`${s.signUpLink}`} href="#">
-              Sign Up
+              Login
             </Card.Link>
             <Card.Link className={`${s.passwordLink}`} href="#">
               Forgot your password?
