@@ -51,8 +51,8 @@ export default function LoginForm() {
                 required
                 type="email"
                 placeholder="email"
-                autoComplete="true "
                 value={email}
+                autoComplete="true"
                 onChange={e => setEmail(e.target.value)}
                 className={`${s.inputField}`}
               />
@@ -70,7 +70,7 @@ export default function LoginForm() {
                 required
                 type="password"
                 placeholder="password"
-                autoComplete
+                autoComplete="true"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 className={`${s.inputField}`}

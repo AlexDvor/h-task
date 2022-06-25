@@ -2,7 +2,7 @@ import NavBar from 'components/NavBar';
 import { useState } from 'react';
 import { Container } from 'react-bootstrap';
 import img from '../../images/back-user.jpg';
-import style from './UserPage.module.css';
+import s from './UserPage.module.css';
 
 const DB = {
   count: 66,
@@ -410,9 +410,196 @@ export default function UserPage() {
   const [data, setData] = useState([]);
   return (
     <>
-      <div className={style.background} style={{ backgroundImage: `url(${img})` }}>
+      <div className={s.background} style={{ backgroundImage: `url(${img})` }}>
         <NavBar />
-        <Container fluid></Container>
+        <>
+          <Container xs>
+            <div className={s.tableResponsive}>
+              <div className={s.tableWrapper}>
+                <table className={`${s.table} ${s.tableStriped} ${s.tableHover}`}>
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Date Created</th>
+                      <th>Role</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>
+                        <a href="#">
+                          <img src="/examples/images/avatar/1.jpg" class={s.avatar} alt="Avatar" />
+                          Michael Holz
+                        </a>
+                      </td>
+                      <td>04/10/2013</td>
+                      <td>Admin</td>
+                      <td>
+                        <span className="status text-success">&bull;</span> Active
+                      </td>
+                      <td>
+                        <a href="#" className="settings" title="Settings" data-toggle="tooltip">
+                          <i className="material-icons">&#xE8B8;</i>
+                        </a>
+                        <a href="#" className="delete" title="Delete" data-toggle="tooltip">
+                          <i className="material-icons">&#xE5C9;</i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>
+                        <a href="#">
+                          <img
+                            src="/examples/images/avatar/2.jpg"
+                            className="avatar"
+                            alt="Avatar"
+                          />{' '}
+                          Paula Wilson
+                        </a>
+                      </td>
+                      <td>05/08/2014</td>
+                      <td>Publisher</td>
+                      <td>
+                        <span className="status text-success">&bull;</span> Active
+                      </td>
+                      <td>
+                        <a href="#" className="settings" title="Settings" data-toggle="tooltip">
+                          <i className="material-icons">&#xE8B8;</i>
+                        </a>
+                        <a href="#" className="delete" title="Delete" data-toggle="tooltip">
+                          <i className="material-icons">&#xE5C9;</i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>
+                        <a href="#">
+                          <img
+                            src="/examples/images/avatar/3.jpg"
+                            className="avatar"
+                            alt="Avatar"
+                          />{' '}
+                          Antonio Moreno
+                        </a>
+                      </td>
+                      <td>11/05/2015</td>
+                      <td>Publisher</td>
+                      <td>
+                        <span className="status text-danger">&bull;</span> Suspended
+                      </td>
+                      <td>
+                        <a href="#" className="settings" title="Settings" data-toggle="tooltip">
+                          <i className="material-icons">&#xE8B8;</i>
+                        </a>
+                        <a href="#" className="delete" title="Delete" data-toggle="tooltip">
+                          <i className="material-icons">&#xE5C9;</i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>
+                        <a href="#">
+                          <img
+                            src="/examples/images/avatar/4.jpg"
+                            className="avatar"
+                            alt="Avatar"
+                          />{' '}
+                          Mary Saveley
+                        </a>
+                      </td>
+                      <td>06/09/2016</td>
+                      <td>Reviewer</td>
+                      <td>
+                        <span className="status text-success">&bull;</span> Active
+                      </td>
+                      <td>
+                        <a href="#" className="settings" title="Settings" data-toggle="tooltip">
+                          <i className="material-icons">&#xE8B8;</i>
+                        </a>
+                        <a href="#" className="delete" title="Delete" data-toggle="tooltip">
+                          <i className="material-icons">&#xE5C9;</i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>
+                        <a href="#">
+                          <img
+                            src="/examples/images/avatar/5.jpg"
+                            className="avatar"
+                            alt="Avatar"
+                          />{' '}
+                          Martin Sommer
+                        </a>
+                      </td>
+                      <td>12/08/2017</td>
+                      <td>Moderator</td>
+                      <td>
+                        <span className="status text-warning">&bull;</span> Inactive
+                      </td>
+                      <td>
+                        <a href="#" className="settings" title="Settings" data-toggle="tooltip">
+                          <i className="material-icons">&#xE8B8;</i>
+                        </a>
+                        <a href="#" className="delete" title="Delete" data-toggle="tooltip">
+                          <i className="material-icons">&#xE5C9;</i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div className="clearfix">
+                  <div className="hint-text">
+                    Showing <b>5</b> out of <b>25</b> entries
+                  </div>
+                  <ul className="pagination">
+                    <li className="page-item disabled">
+                      <a href="#">Previous</a>
+                    </li>
+                    <li className="page-item">
+                      <a href="#" className="page-link">
+                        1
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a href="#" className="page-link">
+                        2
+                      </a>
+                    </li>
+                    <li className="page-item active">
+                      <a href="#" className="page-link">
+                        3
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a href="#" className="page-link">
+                        4
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a href="#" className="page-link">
+                        5
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a href="#" className="page-link">
+                        Next
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </>
       </div>
     </>
   );
