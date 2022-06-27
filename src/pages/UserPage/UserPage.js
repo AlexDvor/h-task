@@ -417,7 +417,7 @@ export default function UserPage() {
       <div className={s.background} style={{ backgroundImage: `url(${img})` }}>
         <NavBar />
         <Container fluid="xl">
-          <UsersTable />
+          <UsersTable usersData={DB} />
         </Container>
       </div>
     </>
