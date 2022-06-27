@@ -432,14 +432,18 @@ export default function UserPage() {
                       <td>1</td>
                       <td>
                         <a href="#">
-                          <img src="/examples/images/avatar/1.jpg" class={s.avatar} alt="Avatar" />
+                          <img
+                            src="/examples/images/avatar/1.jpg"
+                            className={s.avatar}
+                            alt="Avatar"
+                          />
                           Michael Holz
                         </a>
                       </td>
                       <td>04/10/2013</td>
                       <td>Admin</td>
                       <td>
-                        <span className="status text-success">&bull;</span> Active
+                        <span className={`${s.status} ${s.textSuccess}`}>&bull;</span> Active
                       </td>
                       <td>
                         <a href="#" className="settings" title="Settings" data-toggle="tooltip">
@@ -450,7 +454,8 @@ export default function UserPage() {
                         </a>
                       </td>
                     </tr>
-                    <tr>
+
+                    {/* <tr>
                       <td>2</td>
                       <td>
                         <a href="#">
@@ -476,6 +481,7 @@ export default function UserPage() {
                         </a>
                       </td>
                     </tr>
+
                     <tr>
                       <td>3</td>
                       <td>
@@ -553,7 +559,7 @@ export default function UserPage() {
                           <i className="material-icons">&#xE5C9;</i>
                         </a>
                       </td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </table>
                 <div className="clearfix">
