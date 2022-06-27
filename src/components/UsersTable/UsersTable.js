@@ -1,9 +1,9 @@
 import './common.css';
+import AVA from '../../images/man.png';
 
 export default function UsersTable() {
   return (
     <>
-      {/* <div className="container-xl"> */}
       <div className="table-responsive">
         <div className="table-wrapper">
           <div className="table-title">
@@ -14,12 +14,9 @@ export default function UsersTable() {
                 </h2>
               </div>
               <div className="col-sm-7">
-                <a href="#" className="btn btn-secondary">
-                  <i className="material-icons">&#xE147;</i> <span>Add New User</span>
-                </a>
-                <a href="#" className="btn btn-secondary">
-                  <i className="material-icons">&#xE24D;</i> <span>Export to Excel</span>
-                </a>
+                <button className="btn btn-secondary">
+                  <i className="fa-solid fa-address-card"></i> <span>Add New User</span>
+                </button>
               </div>
             </div>
           </div>
@@ -39,8 +36,7 @@ export default function UsersTable() {
                 <td>1</td>
                 <td>
                   <a href="#">
-                    <img src="/examples/images/avatar/1.jpg" className="avatar" alt="Avatar" />{' '}
-                    Michael Holz
+                    <img src={AVA} className="avatar" alt="Avatar" width={25} /> Michael Holz
                   </a>
                 </td>
                 <td>04/10/2013</td>
@@ -50,18 +46,19 @@ export default function UsersTable() {
                 </td>
                 <td>
                   <a href="#" className="settings" title="Settings" data-toggle="tooltip">
-                    <i className="material-icons">&#xE8B8;</i>
+                    <i className="fa-solid fa-gear"></i>
                   </a>
                   <a href="#" className="delete" title="Delete" data-toggle="tooltip">
-                    <i className="material-icons">&#xE5C9;</i>
+                    <i className="fa-solid fa-ban"></i>
                   </a>
                 </td>
               </tr>
+
               <tr>
                 <td>2</td>
                 <td>
                   <a href="#">
-                    <img src="/examples/images/avatar/2.jpg" className="avatar" alt="Avatar" />{' '}
+                    <img src={AVA} className="avatar" alt="Avatar" width={25} />
                     Paula Wilson
                   </a>
                 </td>
@@ -72,18 +69,19 @@ export default function UsersTable() {
                 </td>
                 <td>
                   <a href="#" className="settings" title="Settings" data-toggle="tooltip">
-                    <i className="material-icons">&#xE8B8;</i>
+                    <i className="fa-solid fa-gear"></i>
                   </a>
                   <a href="#" className="delete" title="Delete" data-toggle="tooltip">
-                    <i className="material-icons">&#xE5C9;</i>
+                    <i className="fa-solid fa-ban"></i>
                   </a>
                 </td>
               </tr>
+
               <tr>
                 <td>3</td>
                 <td>
                   <a href="#">
-                    <img src="/examples/images/avatar/3.jpg" className="avatar" alt="Avatar" />{' '}
+                    <img src={AVA} className="avatar" alt="Avatar" width={25} />
                     Antonio Moreno
                   </a>
                 </td>
@@ -94,19 +92,19 @@ export default function UsersTable() {
                 </td>
                 <td>
                   <a href="#" className="settings" title="Settings" data-toggle="tooltip">
-                    <i className="material-icons">&#xE8B8;</i>
+                    <i className="fa-solid fa-gear"></i>
                   </a>
                   <a href="#" className="delete" title="Delete" data-toggle="tooltip">
-                    <i className="material-icons">&#xE5C9;</i>
+                    <i className="fa-solid fa-ban"></i>
                   </a>
                 </td>
               </tr>
+
               <tr>
                 <td>4</td>
                 <td>
                   <a href="#">
-                    <img src="/examples/images/avatar/4.jpg" className="avatar" alt="Avatar" /> Mary
-                    Saveley
+                    <img src={AVA} className="avatar" alt="Avatar" width={25} /> Mary Saveley
                   </a>
                 </td>
                 <td>06/09/2016</td>
@@ -116,18 +114,19 @@ export default function UsersTable() {
                 </td>
                 <td>
                   <a href="#" className="settings" title="Settings" data-toggle="tooltip">
-                    <i className="material-icons">&#xE8B8;</i>
+                    <i className="fa-solid fa-gear"></i>
                   </a>
                   <a href="#" className="delete" title="Delete" data-toggle="tooltip">
-                    <i className="material-icons">&#xE5C9;</i>
+                    <i className="fa-solid fa-ban"></i>
                   </a>
                 </td>
               </tr>
+
               <tr>
                 <td>5</td>
                 <td>
                   <a href="#">
-                    <img src="/examples/images/avatar/5.jpg" className="avatar" alt="Avatar" />{' '}
+                    <img src={AVA} className="avatar" alt="Avatar" width={25} />
                     Martin Sommer
                   </a>
                 </td>
@@ -138,15 +137,60 @@ export default function UsersTable() {
                 </td>
                 <td>
                   <a href="#" className="settings" title="Settings" data-toggle="tooltip">
-                    <i className="material-icons">&#xE8B8;</i>
+                    <i className="fa-solid fa-gear"></i>
                   </a>
                   <a href="#" className="delete" title="Delete" data-toggle="tooltip">
-                    <i className="material-icons">&#xE5C9;</i>
+                    <i className="fa-solid fa-ban"></i>
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>1</td>
+                <td>
+                  <a href="#">
+                    <img src={AVA} className="avatar" alt="Avatar" width={25} /> Michael Holz
+                  </a>
+                </td>
+                <td>04/10/2013</td>
+                <td>Admin</td>
+                <td>
+                  <span className="status text-success">&bull;</span> Active
+                </td>
+                <td>
+                  <a href="#" className="settings" title="Settings" data-toggle="tooltip">
+                    <i className="fa-solid fa-gear"></i>
+                  </a>
+                  <a href="#" className="delete" title="Delete" data-toggle="tooltip">
+                    <i className="fa-solid fa-ban"></i>
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td>1</td>
+                <td>
+                  <a href="#">
+                    <img src={AVA} className="avatar" alt="Avatar" width={25} /> Michael Holz
+                  </a>
+                </td>
+                <td>04/10/2013</td>
+                <td>Admin</td>
+                <td>
+                  <span className="status text-success">&bull;</span> Active
+                </td>
+                <td>
+                  <a href="#" className="settings" title="Settings" data-toggle="tooltip">
+                    <i className="fa-solid fa-gear"></i>
+                  </a>
+                  <a href="#" className="delete" title="Delete" data-toggle="tooltip">
+                    <i className="fa-solid fa-ban"></i>
                   </a>
                 </td>
               </tr>
             </tbody>
           </table>
+
           <div className="clearfix">
             <div className="hint-text">
               Showing <b>5</b> out of <b>25</b> entries
@@ -189,7 +233,6 @@ export default function UsersTable() {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 }
