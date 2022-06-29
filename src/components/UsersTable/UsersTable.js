@@ -1,8 +1,21 @@
-import './common.css';
-import PaginationUsers from 'components/Pagination';
+import { useState } from 'react';
 import AVA from '../../images/man.png';
+import PaginationUsers from 'components/Pagination';
+import './common.css';
 
 export default function UsersTable({ usersData }) {
+  const [users] = useState(usersData.items);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(12);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentUsers = users.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = pageNum => setCurrentPage(pageNum);
+  const nextPage = () => setCurrentPage(prevState => prevState + 1);
+  const prevPage = () => setCurrentPage(prevState => prevState - 1);
+
   return (
     <>
       <div className="table-wrapper">
@@ -32,7 +45,7 @@ export default function UsersTable({ usersData }) {
               </tr>
             </thead>
             <tbody>
-              {usersData.items.map((user, index) => (
+              {currentUsers.map((user, index) => (
                 <tr key={user.id}>
                   <td>{index}</td>
                   <td>
@@ -56,37 +69,18 @@ export default function UsersTable({ usersData }) {
                   </td>
                 </tr>
               ))}
-              {/* <tr>
-                <td>1</td>
-                <td>
-                  <a href="#">
-                    <img src={AVA} className="avatar" alt="Avatar" width={25} /> Michael Holz
-                  </a>
-                </td>
-                <td>04/10/2013</td>
-                <td>Admin</td>
-                <td>
-                  <span className="status text-success">&bull;</span> Active
-                </td>
-                <td>
-                  <a href="#" className="settings" title="Settings" data-toggle="tooltip">
-                    <i className="fa-solid fa-gear"></i>
-                  </a>
-                  <a href="#" className="delete" title="Delete" data-toggle="tooltip">
-                    <i className="fa-solid fa-ban"></i>
-                  </a>
-                </td>
-              </tr> */}
             </tbody>
           </table>
         </div>
 
-        <div className="clearfix">
-          <div className="hint-text">
-            Showing <b>5</b> out of <b>25</b> entries
-          </div>
-          <PaginationUsers></PaginationUsers>
-        </div>
+        <PaginationUsers
+          postsPerPage={postsPerPage}
+          totalPosts={users.length}
+          paginate={paginate}
+          nextPage={nextPage}
+          prevPage={prevPage}
+          currPage={currentPage}
+        ></PaginationUsers>
       </div>
     </>
   );
