@@ -4,6 +4,7 @@ import { useState } from 'react';
 import NavBar from 'components/NavBar';
 import UsersTable from 'components/UsersTable';
 import { Container } from 'react-bootstrap';
+import Footer from 'components/Footer';
 // others
 import img from '../../images/back-user.jpg';
 import s from './UserPage.module.css';
@@ -419,6 +420,7 @@ export default function UserPage() {
         <Container fluid="xl">
           <UsersTable usersData={DB} />
         </Container>
+        <Footer />
       </div>
     </>
   );
