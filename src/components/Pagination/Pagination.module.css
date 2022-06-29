@@ -1,16 +1,3 @@
-.pageItem {
-  border: none;
-  font-size: 13px;
-  min-width: 30px;
-  min-height: 30px;
-  color: #999;
-  margin: 0 2px;
-  line-height: 30px;
-  border-radius: 2px !important;
-  text-align: center;
-  padding: 0 6px;
-}
-
 .pageButtonLink {
   border: none;
   font-size: 13px;

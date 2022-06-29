@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import AVA from '../../images/man.png';
 import PaginationUsers from 'components/Pagination';
+import AVA from '../../images/man.png';
 import './common.css';
 
 export default function UsersTable({ usersData }) {

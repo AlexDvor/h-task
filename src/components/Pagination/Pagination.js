@@ -1,5 +1,5 @@
-import s from './Pagination.module.css';
 import { useState } from 'react';
+import s from './Pagination.module.css';
 
 export default function PaginationUsers(props) {
   const { postsPerPage, totalPosts, paginate, nextPage, prevPage, currPage } = props;
