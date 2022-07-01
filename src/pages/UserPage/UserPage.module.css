@@ -1,11 +1,16 @@
 .background {
-  background-size: cover;
+  /* background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position: center; */
   /* position: relative; */
   /* height: 100vh; */
   /* background-attachment: fixed; */
+  /* width: 100vw; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* height: 100%; */
+  background-size: cover;
 }
-
-/*  */
