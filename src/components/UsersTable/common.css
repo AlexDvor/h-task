@@ -28,7 +28,6 @@
 
   td:before {
     position: absolute;
-
     top: 6px;
     left: 6px;
     width: 45%;
@@ -39,7 +38,19 @@
 
 .table-responsive {
   margin: 30px 0px;
-  height: 567px;
+  height: 40vh;
+}
+
+@media only screen and (min-width: 768px) {
+  .table-responsive {
+    height: 50vh;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .table-responsive {
+    height: 60vh;
+  }
 }
 
 .table-wrapper {
@@ -47,7 +58,6 @@
   padding: 20px 25px;
   border-radius: 3px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  /* margin: 25px 0px; */
 }
 
 .table-title {

@@ -42,16 +42,16 @@ export default function PaginationUsers(props) {
 
   return (
     <>
-      <div className="clearfix">
+      <div className={s.wrapper}>
         <div className="hint-text">
           Showing <b>{currPage}</b> out of <b>{quantityPages}</b> entries
         </div>
-        <ul className="pagination justify-content-center">
+        <ul className={`pagination justify-content-center ${s.pagesList}`}>
           <li className="page-item">
             {!isDisabledPreviousBtn ? (
               <>
                 <button
-                  className={s.pageButtonLink}
+                  className={`${s.pageButtonLink} ${s.hiddenButton} `}
                   onClick={() => checkingForFirstElement(currPage)}
                 >
                   Previous
@@ -79,7 +79,7 @@ export default function PaginationUsers(props) {
             {!isDisabledNextBtn ? (
               <>
                 <button
-                  className={s.pageButtonLink}
+                  className={`${s.pageButtonLink} ${s.hiddenButton} `}
                   onClick={e => checkingForLastElement(currPage)}
                 >
                   Next

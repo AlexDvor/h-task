@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
 import PaginationUsers from 'components/Pagination';
 import AVA from '../../images/man.png';
 import './common.css';
@@ -24,6 +25,19 @@ export default function UsersTable({ usersData }) {
             <div className="col-sm-5">
               <h2>Users</h2>
             </div>
+
+            <div className="col-sm-5">
+              <Form className="d-flex">
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                />
+                <Button variant="outline-success">Search</Button>
+              </Form>
+            </div>
+
             <div className="col-sm-7">
               <button className="btn btn-secondary">
                 <i className="fa-solid fa-address-card"></i> <span>Add New User</span>

@@ -415,13 +415,14 @@ export default function UserPage() {
   const [data, setData] = useState([]);
   return (
     <>
-      {/* <NavBar /> */}
+      <NavBar />
+
       <div className={s.background} style={{ backgroundImage: `url(${img})` }}>
         <Container fluid="xl">
           <UsersTable usersData={DB} />
         </Container>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
