@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import PaginationUsers from 'components/Pagination';
-import EditUserModal from 'components/Modal';
+import EditUserModal from 'components/EditUserModal';
+import ConfirmModal from 'components/ConfirmModal';
+
 import AVA from '../../images/man.png';
 import './UserTable.css';
 
 export default function UsersTable({ usersData }) {
   const [users] = useState(usersData.items);
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentUser, setCurrentUser] = useState({});
   const [postsPerPage] = useState(12);
-  const [show, setShow] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -17,9 +21,12 @@ export default function UsersTable({ usersData }) {
   const paginate = pageNum => setCurrentPage(pageNum);
   const nextPage = () => setCurrentPage(prevState => prevState + 1);
   const prevPage = () => setCurrentPage(prevState => prevState - 1);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
+  const handleClose = () => setShowConfirmModal(false);
+  const handleShow = () => setShowConfirmModal(true);
+
+  const handleEditClose = () => setShowEditModal(false);
+  const handleEditShow = () => setShowEditModal(true);
   return (
     <>
       <div className="table-wrapper">
@@ -65,7 +72,7 @@ export default function UsersTable({ usersData }) {
             </thead>
             <tbody>
               {currentUsers.map((user, index) => (
-                <tr key={user.id}>
+                <tr key={user.id} id={user.id}>
                   <td>{index}</td>
                   <td>
                     <a href="#">
@@ -79,13 +86,33 @@ export default function UsersTable({ usersData }) {
                     <span className="status text-success">&bull;</span> Active
                   </td>
                   <td>
-                    <a href="#" className="settings" title="Settings" data-toggle="tooltip">
-                      <i className="fa-solid fa-gear"></i>
-                    </a>
+                    <div className="wrapper-buttons">
+                      <button
+                        className="edit-buttons settings"
+                        type="button"
+                        onClick={e => {
+                          setCurrentUser({
+                            name: user.name,
+                            surname: user.surname,
+                            email: user.email,
+                          });
+                          handleEditShow();
+                        }}
+                      >
+                        <i className="fa-solid fa-gear"></i>
+                      </button>
 
-                    <a href="#" className="delete" title="Delete" data-toggle="tooltip">
-                      <i className="fa-solid fa-ban"></i>
-                    </a>
+                      <button
+                        className="remove-buttons delete"
+                        type="button"
+                        onClick={() => {
+                          setCurrentUser({ name: user.name, surname: user.surname, id: user.id });
+                          handleShow();
+                        }}
+                      >
+                        <i className="fa-solid fa-ban"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -102,9 +129,8 @@ export default function UsersTable({ usersData }) {
           currPage={currentPage}
         ></PaginationUsers>
 
-        <EditUserModal isHidden={show} onCloseClick={handleClose}>
-          fghfgh
-        </EditUserModal>
+        <EditUserModal isHidden={showEditModal} onCloseClick={handleEditClose} user={currentUser} />
+        <ConfirmModal isHidden={showConfirmModal} onCloseClick={handleClose} user={currentUser} />
       </div>
     </>
   );

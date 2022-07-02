@@ -135,7 +135,7 @@ table.table th i {
 
 table.table td:last-child i {
   opacity: 0.9;
-  font-size: 22px;
+  font-size: 20px;
   margin: 0 5px;
 }
 
@@ -252,4 +252,21 @@ table.table .avatar {
   width: 100px;
 }
 
-/* #ffc312 */
+.wrapper-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-buttons {
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  color: #299be4;
+}
+
+.remove-buttons {
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  color: red;
+}
