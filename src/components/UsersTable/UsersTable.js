@@ -2,11 +2,13 @@ import { useState } from 'react';
 import './UserTable.css';
 import PaginationUsers from 'components/Pagination';
 import AVA from '../../images/man.png';
+import NewUserModal from 'components/Modal';
 
 export default function UsersTable({ usersData }) {
   const [users] = useState(usersData.items);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(12);
+  const [show, setShow] = useState(false);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -15,6 +17,8 @@ export default function UsersTable({ usersData }) {
   const paginate = pageNum => setCurrentPage(pageNum);
   const nextPage = () => setCurrentPage(prevState => prevState + 1);
   const prevPage = () => setCurrentPage(prevState => prevState - 1);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
@@ -40,7 +44,7 @@ export default function UsersTable({ usersData }) {
             </div>
 
             <div className="col-sm-4">
-              <button className="btn btn-secondary">
+              <button className="btn btn-secondary" onClick={handleShow}>
                 <i className="fa-solid fa-address-card"></i> <span>Add New User</span>
               </button>
             </div>
@@ -78,6 +82,7 @@ export default function UsersTable({ usersData }) {
                     <a href="#" className="settings" title="Settings" data-toggle="tooltip">
                       <i className="fa-solid fa-gear"></i>
                     </a>
+
                     <a href="#" className="delete" title="Delete" data-toggle="tooltip">
                       <i className="fa-solid fa-ban"></i>
                     </a>
@@ -96,6 +101,10 @@ export default function UsersTable({ usersData }) {
           prevPage={prevPage}
           currPage={currentPage}
         ></PaginationUsers>
+
+        <NewUserModal isHidden={show} onCloseClick={handleClose}>
+          test
+        </NewUserModal>
       </div>
     </>
   );
