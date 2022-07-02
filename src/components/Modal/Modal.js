@@ -5,9 +5,7 @@ export default function CenteredModal({ children, text, isHidden, onCloseClick }
   return (
     <>
       <Modal show={isHidden} onHide={onCloseClick} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton>{/* <Modal.Title>Modal heading</Modal.Title> */}</Modal.Header>
         <Modal.Body>{children || text}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={onCloseClick}>

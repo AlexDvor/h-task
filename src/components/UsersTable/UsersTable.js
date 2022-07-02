@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import './UserTable.css';
 import PaginationUsers from 'components/Pagination';
+import EditUserModal from 'components/Modal';
 import AVA from '../../images/man.png';
-import NewUserModal from 'components/Modal';
+import './UserTable.css';
 
 export default function UsersTable({ usersData }) {
   const [users] = useState(usersData.items);
@@ -102,9 +102,9 @@ export default function UsersTable({ usersData }) {
           currPage={currentPage}
         ></PaginationUsers>
 
-        <NewUserModal isHidden={show} onCloseClick={handleClose}>
-          test
-        </NewUserModal>
+        <EditUserModal isHidden={show} onCloseClick={handleClose}>
+          fghfgh
+        </EditUserModal>
       </div>
     </>
   );
