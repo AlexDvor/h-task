@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './common.css';
+import './UserTable.css';
 import PaginationUsers from 'components/Pagination';
 import AVA from '../../images/man.png';
 
