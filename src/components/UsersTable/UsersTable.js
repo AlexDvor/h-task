@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './common.css';
-import s from './UsersTable.module.css';
 import PaginationUsers from 'components/Pagination';
 import AVA from '../../images/man.png';
 
@@ -26,7 +25,7 @@ export default function UsersTable({ usersData }) {
               <h2>Users</h2>
             </div>
 
-            <div className={`col-sm-4 ${s.formWrapper}`}>
+            <div className="col-sm-4 form-wrapper">
               <form className="d-flex">
                 <input
                   type="search"
@@ -34,7 +33,7 @@ export default function UsersTable({ usersData }) {
                   className="form-control"
                   aria-label="Search"
                 />
-                <button type="button" className={`btn btn-secondary ${s.searchBtn}`}>
+                <button type="button" className="btn btn-secondary search-btn">
                   Search
                 </button>
               </form>
