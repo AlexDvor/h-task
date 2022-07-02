@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import './common.css';
+import s from './UsersTable.module.css';
 import PaginationUsers from 'components/Pagination';
 import AVA from '../../images/man.png';
-import './common.css';
 
 export default function UsersTable({ usersData }) {
   const [users] = useState(usersData.items);
@@ -22,23 +22,25 @@ export default function UsersTable({ usersData }) {
       <div className="table-wrapper">
         <div className="table-title">
           <div className="row">
-            <div className="col-sm-5">
+            <div className="col-sm-4">
               <h2>Users</h2>
             </div>
 
-            <div className="col-sm-5">
-              <Form className="d-flex">
-                <Form.Control
+            <div className={`col-sm-4 ${s.formWrapper}`}>
+              <form className="d-flex">
+                <input
                   type="search"
                   placeholder="Search"
-                  className="me-2"
+                  className="form-control"
                   aria-label="Search"
                 />
-                <Button variant="outline-success">Search</Button>
-              </Form>
+                <button type="button" className={`btn btn-secondary ${s.searchBtn}`}>
+                  Search
+                </button>
+              </form>
             </div>
 
-            <div className="col-sm-7">
+            <div className="col-sm-4">
               <button className="btn btn-secondary">
                 <i className="fa-solid fa-address-card"></i> <span>Add New User</span>
               </button>

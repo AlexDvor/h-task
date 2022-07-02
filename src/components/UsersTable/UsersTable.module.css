@@ -1,0 +1,13 @@
+.searchBtn {
+  width: 100px;
+}
+
+.formWrapper {
+  padding: 10px;
+}
+
+@media only screen and (min-width: 576px) {
+  .formWrapper {
+    padding: 0px;
+  }
+}
