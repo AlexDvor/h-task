@@ -264,9 +264,19 @@ table.table .avatar {
   color: #299be4;
 }
 
+.edit-buttons:hover,
+.edit-buttons:focus {
+  color: #1c6b9c;
+}
+
 .remove-buttons {
   border: none;
   background-color: transparent;
   padding: 0px;
   color: red;
+}
+
+.remove-buttons:hover,
+.remove-buttons:focus {
+  color: rgb(134, 4, 4);
 }

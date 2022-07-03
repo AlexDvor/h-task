@@ -2,7 +2,6 @@ import { useState } from 'react';
 import PaginationUsers from 'components/Pagination';
 import EditUserModal from 'components/EditUserModal';
 import ConfirmModal from 'components/ConfirmModal';
-
 import AVA from '../../images/man.png';
 import './UserTable.css';
 

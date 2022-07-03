@@ -6,7 +6,7 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
     <>
       <Modal show={isHidden} onHide={onCloseClick} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Edit User</Modal.Title>
+          <Modal.Title>Edit User ({`${user.name} ${user.surname}`})</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -31,7 +31,7 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
               />
             </Form.Group>
 
-            <Form.Group className="mb-5" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
@@ -39,6 +39,10 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
                 defaultValue={user.email}
                 autoComplete="off"
               />
+            </Form.Group>
+
+            <Form.Group className="mb-5" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Are you sure you want to change?" />
             </Form.Group>
 
             <div className="d-flex justify-content-center">
