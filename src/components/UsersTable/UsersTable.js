@@ -6,7 +6,6 @@ import AVA from '../../images/man.png';
 import './UserTable.css';
 
 export default function UsersTable({ usersData }) {
-  const [users] = useState(usersData.items);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentUser, setCurrentUser] = useState({});
   const [postsPerPage] = useState(12);
@@ -15,7 +14,7 @@ export default function UsersTable({ usersData }) {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentUsers = users.slice(indexOfFirstPost, indexOfLastPost);
+  const currentUsers = usersData.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = pageNum => setCurrentPage(pageNum);
   const nextPage = () => setCurrentPage(prevState => prevState + 1);
@@ -121,7 +120,7 @@ export default function UsersTable({ usersData }) {
 
         <PaginationUsers
           postsPerPage={postsPerPage}
-          totalPosts={users.length}
+          totalPosts={usersData.length}
           paginate={paginate}
           nextPage={nextPage}
           prevPage={prevPage}
