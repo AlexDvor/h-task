@@ -81,7 +81,8 @@ export default function UsersTable({ usersData }) {
                   <td>{user.email}</td>
                   <td>Publisher</td>
                   <td>
-                    <span className="status text-success">&bull;</span> Active
+                    <span className="status text-success">&bull;</span>
+                    Active
                   </td>
                   <td>
                     <div className="wrapper-buttons">
