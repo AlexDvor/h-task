@@ -1,10 +1,18 @@
+import { useState } from 'react';
+import { AuthContext } from 'context/authContext';
+import LoginPage from 'pages/LogInPage/LoginPage';
+import { getTokenStorage } from 'helpers/TokenStorage';
 import './App.css';
-import UserPage from 'pages/UserPage';
 
 function App() {
+  const [isAuth, setAuth] = useState(false);
+  const [token, setToken] = useState(getTokenStorage);
+
   return (
     <>
-      <UserPage />
+      <AuthContext.Provider value={{ isAuth, setAuth, token, setToken }}>
+        <LoginPage />
+      </AuthContext.Provider>
     </>
   );
 }

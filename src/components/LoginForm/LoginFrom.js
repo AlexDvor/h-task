@@ -1,12 +1,31 @@
 import { useState } from 'react';
-import { Form, Button, Spinner, Card, InputGroup } from 'react-bootstrap';
+import { login } from 'services/auth';
 import s from './LoginForm.module.css';
+import { useAuthContext } from 'context/authContext';
+import { addTokenStorage } from 'helpers/TokenStorage';
+import { Form, Button, Spinner, Card, InputGroup } from 'react-bootstrap';
 
 export default function LoginForm() {
+  const { setToken, setAuth } = useAuthContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(false);
   const [isLoading, setLoading] = useState(false);
+
+  const submitForm = async data => {
+    try {
+      setLoading(true);
+      const response = await login(data);
+      setToken(response.accessToken);
+      setAuth(true);
+      addTokenStorage(response.accessToken);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -16,9 +35,7 @@ export default function LoginForm() {
       setValidated(true);
       return;
     }
-
-    setLoading(true);
-    console.log({ email, password });
+    submitForm({ email, password });
   };
 
   return (
