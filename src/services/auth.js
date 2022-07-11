@@ -31,8 +31,9 @@ export const signUp = async userData => {
   }
 };
 
-export const logOutOperation = () => {
+export const logOut = () => {
   try {
+    token.unset();
     removeTokenStorage();
   } catch (error) {
     console.log();

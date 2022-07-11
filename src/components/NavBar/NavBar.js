@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Nav, Container, Navbar, Button } from 'react-bootstrap';
 import { useAuthContext } from 'context/authContext';
-import { logOutOperation } from 'services/auth';
+import { logOut } from 'services/auth';
 import ConfirmModal from 'components/ConfirmModal';
 
 export default function NavBar() {
@@ -10,7 +10,7 @@ export default function NavBar() {
 
   const handleLogout = () => {
     setShowConfirmModal(false);
-    logOutOperation();
+    logOut();
     setToken();
   };
 
@@ -39,7 +39,7 @@ export default function NavBar() {
       <ConfirmModal
         isHidden={showConfirmModal}
         onCloseClick={handleClose}
-        onHandleLogout={handleLogout}
+        onHandleClick={handleLogout}
         text="Are you sure you want to go out?"
       />
     </>

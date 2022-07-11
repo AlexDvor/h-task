@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PaginationUsers from 'components/Pagination';
 import EditUserModal from 'components/EditUserModal';
 import ConfirmModal from 'components/ConfirmModal';
+import { useRemoveUsers } from 'hooks/useRemoveUser';
 import AVA from '../../images/man.png';
 import './UserTable.css';
 
@@ -11,6 +12,7 @@ export default function UsersTable({ usersData }) {
   const [postsPerPage] = useState(12);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const { removeUserById } = useRemoveUsers();
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -25,6 +27,11 @@ export default function UsersTable({ usersData }) {
 
   const handleEditClose = () => setShowEditModal(false);
   const handleEditShow = () => setShowEditModal(true);
+
+  const handleRemove = id => {
+    removeUserById(id);
+    setShowConfirmModal(false);
+  };
   return (
     <>
       <div className="table-wrapper">
@@ -132,6 +139,7 @@ export default function UsersTable({ usersData }) {
         <ConfirmModal
           isHidden={showConfirmModal}
           onCloseClick={handleClose}
+          onHandleClick={handleRemove}
           user={currentUser}
           text="Are you sure you want to delete this user?"
         />

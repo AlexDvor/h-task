@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-export default function ConfirmModal({ isHidden, onCloseClick, user, text, onHandleLogout }) {
+export default function ConfirmModal({ isHidden, onCloseClick, user, text, onHandleClick }) {
   return (
     <>
       <Modal show={isHidden} onHide={onCloseClick} centered>
@@ -17,7 +17,7 @@ export default function ConfirmModal({ isHidden, onCloseClick, user, text, onHan
           <Button
             className="custom-button"
             variant="secondary"
-            onClick={onHandleLogout || onCloseClick}
+            onClick={user ? () => onHandleClick(user.id) : onHandleClick}
           >
             Yes
           </Button>
