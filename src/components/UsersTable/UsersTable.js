@@ -98,11 +98,7 @@ export default function UsersTable({ usersData, isLoading }) {
                         className="edit-buttons settings"
                         type="button"
                         onClick={e => {
-                          setCurrentUser({
-                            name: user.name,
-                            surname: user.surname,
-                            email: user.email,
-                          });
+                          setCurrentUser({ ...user });
                           handleEditShow();
                         }}
                       >
@@ -113,7 +109,7 @@ export default function UsersTable({ usersData, isLoading }) {
                         className="remove-buttons delete"
                         type="button"
                         onClick={() => {
-                          setCurrentUser({ name: user.name, surname: user.surname, id: user.id });
+                          setCurrentUser({ ...user });
                           handleShow();
                         }}
                       >

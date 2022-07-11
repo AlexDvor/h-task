@@ -21,3 +21,12 @@ export const removeUserByID = async id => {
     console.log(error);
   }
 };
+
+export const updateUserByID = async (id, newUserData) => {
+  try {
+    const res = await axios.put(`users/${id}`, newUserData);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
