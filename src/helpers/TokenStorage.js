@@ -8,6 +8,6 @@ export const addTokenStorage = token => {
   localStorage.setItem('tokenApp', JSON.stringify(token));
 };
 
-export const removeTokenStorage = token => {
+export const removeTokenStorage = () => {
   localStorage.setItem('tokenApp', JSON.stringify(''));
 };

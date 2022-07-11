@@ -129,7 +129,12 @@ export default function UsersTable({ usersData }) {
         ></PaginationUsers>
 
         <EditUserModal isHidden={showEditModal} onCloseClick={handleEditClose} user={currentUser} />
-        <ConfirmModal isHidden={showConfirmModal} onCloseClick={handleClose} user={currentUser} />
+        <ConfirmModal
+          isHidden={showConfirmModal}
+          onCloseClick={handleClose}
+          user={currentUser}
+          text="Are you sure you want to delete this user?"
+        />
       </div>
     </>
   );
