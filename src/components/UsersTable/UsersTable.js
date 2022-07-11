@@ -6,7 +6,8 @@ import { useRemoveUsers } from 'hooks/useRemoveUser';
 import AVA from '../../images/man.png';
 import './UserTable.css';
 
-export default function UsersTable({ usersData }) {
+export default function UsersTable({ usersData, isLoading }) {
+  const { count, items } = usersData;
   const [currentPage, setCurrentPage] = useState(1);
   const [currentUser, setCurrentUser] = useState({});
   const [postsPerPage] = useState(12);
@@ -16,7 +17,7 @@ export default function UsersTable({ usersData }) {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentUsers = usersData.slice(indexOfFirstPost, indexOfLastPost);
+  const currentUsers = items.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = pageNum => setCurrentPage(pageNum);
   const nextPage = () => setCurrentPage(prevState => prevState + 1);
@@ -38,7 +39,7 @@ export default function UsersTable({ usersData }) {
         <div className="table-title">
           <div className="row">
             <div className="col-sm-4">
-              <h2>Users</h2>
+              <h2>{`Users : ${count}`}</h2>
             </div>
 
             <div className="col-sm-4 form-wrapper">
@@ -128,7 +129,7 @@ export default function UsersTable({ usersData }) {
 
         <PaginationUsers
           postsPerPage={postsPerPage}
-          totalPosts={usersData.length}
+          totalPosts={items.length}
           paginate={paginate}
           nextPage={nextPage}
           prevPage={prevPage}

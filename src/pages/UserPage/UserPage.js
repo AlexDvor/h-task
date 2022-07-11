@@ -15,7 +15,7 @@ export default function UserPage() {
 
       <div className={s.background} style={{ backgroundImage: `url(${img})` }}>
         <Container fluid="xl">
-          {users && users.items && <UsersTable usersData={users.items} loading={isLoading} />}
+          {users && <UsersTable usersData={users} isLoading={isLoading} />}
         </Container>
       </div>
       <Footer />
