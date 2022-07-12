@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import PaginationUsers from 'components/Pagination';
 import EditUserModal from 'components/EditUserModal';
 import ConfirmModal from 'components/ConfirmModal';
@@ -17,7 +17,10 @@ export default function UsersTable({ usersData, isLoading }) {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentUsers = items.slice(indexOfFirstPost, indexOfLastPost);
+
+  const currentUsers = useMemo(() => {
+    return items.slice(indexOfFirstPost, indexOfLastPost);
+  }, [indexOfFirstPost, indexOfLastPost, items]);
 
   const paginate = pageNum => setCurrentPage(pageNum);
   const nextPage = () => setCurrentPage(prevState => prevState + 1);

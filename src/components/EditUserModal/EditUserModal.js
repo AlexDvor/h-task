@@ -1,20 +1,29 @@
 import { Form, Modal, Button } from 'react-bootstrap';
 import './EditUserModal.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function EditUserModal({ isHidden, onCloseClick, user }) {
-  const [name, setName] = useState(user.name);
-  const [surname, setSurName] = useState(user.surname);
-  const [email, setEmail] = useState(user.email);
+  const [name, setName] = useState('');
+  const [surname, setSurName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [id, setId] = useState(user.id);
-  console.log('🚀 - surname', surname);
-  console.log('🚀 - email', email);
+  const [id, setId] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setSurName(user.surname);
+      setEmail(user.email);
+      setId(user.id);
+    }
+  }, [user]);
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log({ name, surname, email, id, password });
+    console.log({ name, surname, email, password, id });
   };
+
   return (
     <>
       <Modal show={isHidden} onHide={onCloseClick} centered>
@@ -79,11 +88,20 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
             </Form.Group>
 
             <Form.Group className="mb-5">
-              <Form.Check type="checkbox" label="Are you sure you want to change?" />
+              <Form.Check
+                type="checkbox"
+                onChange={e => setIsChecked(e.target.checked)}
+                label="Are you sure you want to change?"
+              />
             </Form.Group>
 
             <div className="d-flex justify-content-center">
-              <Button variant="secondary" type="submit" className="custom-button">
+              <Button
+                variant="secondary"
+                type="submit"
+                className="custom-button"
+                disabled={!isChecked}
+              >
                 Save
               </Button>
               <Button
