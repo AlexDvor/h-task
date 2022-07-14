@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { removeTokenStorage } from '../helpers/TokenStorage';
+import { toast } from 'react-toastify';
+import { toastAuthOptions } from '../helpers/toastAuthOptions';
 
 axios.defaults.baseURL = 'http://51.38.51.187:5050/api/v1/';
 
@@ -18,7 +20,7 @@ export const login = async userData => {
     token.set(data.accessToken);
     return data;
   } catch (error) {
-    console.log('🚀 - error', error);
+    toast.error(error.message, toastAuthOptions);
   }
 };
 
@@ -27,7 +29,7 @@ export const signUp = async userData => {
     const res = await axios.post('auth/sign-up', userData);
     return res.data;
   } catch (error) {
-    console.log('🚀 - error', error);
+    toast.error(error.message, toastAuthOptions);
   }
 };
 
@@ -36,6 +38,6 @@ export const logOut = () => {
     token.unset();
     removeTokenStorage();
   } catch (error) {
-    console.log();
+    toast.error(error.message, toastAuthOptions);
   }
 };

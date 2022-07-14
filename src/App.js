@@ -4,6 +4,7 @@ import { getTokenStorage } from 'helpers/TokenStorage';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
+
 //pages
 import SignUpPage from 'pages/SignUpPage';
 import LoginPage from 'pages/LogInPage/LoginPage';

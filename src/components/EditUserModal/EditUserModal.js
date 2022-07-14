@@ -3,25 +3,39 @@ import './EditUserModal.css';
 import { useState, useEffect } from 'react';
 
 export default function EditUserModal({ isHidden, onCloseClick, user }) {
-  const [name, setName] = useState('');
-  const [surname, setSurName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [id, setId] = useState('');
   const [isChecked, setIsChecked] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+    id: '',
+  });
 
   useEffect(() => {
     if (user) {
-      setName(user.name);
-      setSurName(user.surname);
-      setEmail(user.email);
-      setId(user.id);
+      setFormData(prevState => ({ ...prevState, ...user }));
     }
   }, [user]);
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log({ name, surname, email, password, id });
+    let obj = {};
+    for (const key in formData) {
+      if (formData[key]) {
+        obj[key] = formData[key];
+      }
+    }
+    console.log('obj', obj);
+  };
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
@@ -40,7 +54,8 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
                 placeholder="Name"
                 defaultValue={user.name}
                 autoComplete="off"
-                onChange={e => setName(e.target.value)}
+                onChange={handleChange}
+                name="name"
               />
             </Form.Group>
 
@@ -51,7 +66,10 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
                 placeholder="Surname"
                 defaultValue={user.surname}
                 autoComplete="off"
-                onChange={e => setSurName(e.target.value)}
+                name="surname"
+                onChange={e =>
+                  setFormData(prevState => ({ ...prevState, ...(prevState.name = e.target.value) }))
+                }
               />
             </Form.Group>
 
@@ -62,7 +80,13 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
                 placeholder="Enter email"
                 defaultValue={user.email}
                 autoComplete="off"
-                onChange={e => setEmail(e.target.value)}
+                name="email"
+                onChange={e =>
+                  setFormData(prevState => ({
+                    ...prevState,
+                    ...(prevState.email = e.target.value),
+                  }))
+                }
               />
             </Form.Group>
 
@@ -72,7 +96,9 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
                 type="text"
                 placeholder="Enter new password"
                 autoComplete="off"
-                onChange={e => setPassword(e.target.value)}
+                onChange={e =>
+                  setFormData(prevState => ({ ...prevState, ...(prevState.name = e.target.value) }))
+                }
               />
             </Form.Group>
 
@@ -83,7 +109,9 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
                 placeholder="Enter new ID"
                 defaultValue={user.id}
                 autoComplete="off"
-                onChange={e => setId(e.target.value)}
+                onChange={e =>
+                  setFormData(prevState => ({ ...prevState, ...(prevState.name = e.target.value) }))
+                }
               />
             </Form.Group>
 

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { login } from 'services/auth';
-import s from './LoginForm.module.css';
 import { useAuthContext } from 'context/authContext';
 import { addTokenStorage } from 'helpers/TokenStorage';
 import { Form, Button, Spinner, Card, InputGroup } from 'react-bootstrap';
+import s from './LoginForm.module.css';
 
 export default function LoginForm() {
   const { setToken, setAuth } = useAuthContext();
@@ -20,7 +20,6 @@ export default function LoginForm() {
       setAuth(true);
       addTokenStorage(response.accessToken);
     } catch (error) {
-      setLoading(false);
       console.log(error);
     } finally {
       setLoading(false);
@@ -42,7 +41,7 @@ export default function LoginForm() {
     <>
       <Card className={`${s.wrapperCard}`}>
         <Card.Header className={`${s.cardHeader}`}>
-          <Card.Title className={`${s.cardTitle}`}>Sign In</Card.Title>
+          <Card.Title className={`${s.cardTitle}`}>Log In</Card.Title>
           <div className={`${s.socialIcon}`}>
             <span>
               <i className="fab fa-facebook-square"></i>
