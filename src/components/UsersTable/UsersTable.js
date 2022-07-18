@@ -10,7 +10,6 @@ import './UserTable.css';
 export default function UsersTable({ usersData, isLoading }) {
   const { count, items } = usersData;
   const { removeUserById } = useRemoveUsers();
-  const { userData, setUserData } = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [currentUser, setCurrentUser] = useState({});
@@ -26,8 +25,12 @@ export default function UsersTable({ usersData, isLoading }) {
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
   const currentUsers = useMemo(() => {
-    return items.slice(indexOfFirstPost, indexOfLastPost);
-  }, [indexOfFirstPost, indexOfLastPost, items]);
+    if (!filteredData) {
+      return items.slice(indexOfFirstPost, indexOfLastPost);
+    } else {
+      return filteredData;
+    }
+  }, [filteredData, indexOfFirstPost, indexOfLastPost, items]);
 
   const paginate = pageNum => setCurrentPage(pageNum);
   const nextPage = () => setCurrentPage(prevState => prevState + 1);
@@ -42,6 +45,10 @@ export default function UsersTable({ usersData, isLoading }) {
   const handleRemove = id => {
     removeUserById(id);
     setShowConfirmModal(false);
+    if (filteredData) {
+      const result = filteredData.filter(user => user.id !== id);
+      setFilteredData(result);
+    }
   };
 
   const handleFilter = e => {
@@ -58,6 +65,7 @@ export default function UsersTable({ usersData, isLoading }) {
     const data = normalizeSearchQuery(filter, items);
     setFilteredData(data);
   };
+
   return (
     <>
       <div className="table-wrapper">
@@ -136,7 +144,7 @@ export default function UsersTable({ usersData, isLoading }) {
                         <button
                           className="remove-buttons delete"
                           type="button"
-                          onClick={() => {
+                          onClick={e => {
                             setCurrentUser({ ...user });
                             handleShow();
                           }}
@@ -151,14 +159,16 @@ export default function UsersTable({ usersData, isLoading }) {
           </table>
         </div>
 
-        <PaginationUsers
-          postsPerPage={postsPerPage}
-          totalPosts={items.length}
-          paginate={paginate}
-          nextPage={nextPage}
-          prevPage={prevPage}
-          currPage={currentPage}
-        ></PaginationUsers>
+        {!filteredData && (
+          <PaginationUsers
+            postsPerPage={postsPerPage}
+            totalPosts={items.length}
+            paginate={paginate}
+            nextPage={nextPage}
+            prevPage={prevPage}
+            currPage={currentPage}
+          ></PaginationUsers>
+        )}
 
         <EditUserModal isHidden={showEditModal} onCloseClick={handleEditClose} user={currentUser} />
         <ConfirmModal

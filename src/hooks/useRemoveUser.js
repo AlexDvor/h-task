@@ -10,7 +10,7 @@ export const useRemoveUsers = id => {
       toast.success('User was successfully deleted');
     },
     onError(error) {
-      toast.success(error.message);
+      toast.error(error.message);
     },
   });
 
