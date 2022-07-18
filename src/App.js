@@ -19,7 +19,7 @@ function App() {
     <>
       <AuthContext.Provider value={{ isAuth, setAuth, token, setToken }}>
         <Routes>
-          {/* <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to="/login" />} />
 
           <Route
             path="/login"
@@ -40,16 +40,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
-          <Route path="/*" element={<Navigate to="/user" />} /> */}
-
-          <Route path="/" element={<Navigate to="/login" />} />
-
-          <Route path="/login" element={<LoginPage />} />
-
-          <Route path="/signup" element={<SignUpPage />} />
-
-          <Route path="/user" element={<UserPage />} />
 
           <Route path="/*" element={<Navigate to="/user" />} />
         </Routes>

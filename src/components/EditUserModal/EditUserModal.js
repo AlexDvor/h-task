@@ -1,10 +1,11 @@
 import { Form, Modal, Button } from 'react-bootstrap';
 import './EditUserModal.css';
 import { useState, useEffect } from 'react';
+import { useUpdateUsers } from 'hooks/useUpdateUser';
 
 export default function EditUserModal({ isHidden, onCloseClick, user }) {
   const [isChecked, setIsChecked] = useState(false);
-
+  const { updateUser } = useUpdateUsers();
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -21,13 +22,13 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    let obj = {};
+    let form = {};
     for (const key in formData) {
       if (formData[key]) {
-        obj[key] = formData[key];
+        form[key] = formData[key];
       }
     }
-    console.log('obj', obj);
+    updateUser({ id: user.id, data: form });
   };
 
   const handleChange = e => {
@@ -67,9 +68,7 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
                 defaultValue={user.surname}
                 autoComplete="off"
                 name="surname"
-                onChange={e =>
-                  setFormData(prevState => ({ ...prevState, ...(prevState.name = e.target.value) }))
-                }
+                onChange={handleChange}
               />
             </Form.Group>
 
@@ -81,12 +80,7 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
                 defaultValue={user.email}
                 autoComplete="off"
                 name="email"
-                onChange={e =>
-                  setFormData(prevState => ({
-                    ...prevState,
-                    ...(prevState.email = e.target.value),
-                  }))
-                }
+                onChange={handleChange}
               />
             </Form.Group>
 
@@ -96,9 +90,8 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
                 type="text"
                 placeholder="Enter new password"
                 autoComplete="off"
-                onChange={e =>
-                  setFormData(prevState => ({ ...prevState, ...(prevState.name = e.target.value) }))
-                }
+                name="password"
+                onChange={handleChange}
               />
             </Form.Group>
 
@@ -109,9 +102,8 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
                 placeholder="Enter new ID"
                 defaultValue={user.id}
                 autoComplete="off"
-                onChange={e =>
-                  setFormData(prevState => ({ ...prevState, ...(prevState.name = e.target.value) }))
-                }
+                name="id"
+                onChange={handleChange}
               />
             </Form.Group>
 

@@ -8,7 +8,9 @@ export const useRemoveUsers = id => {
     onSuccess() {
       queryClient.invalidateQueries('/users');
       toast.success('User was successfully deleted');
-      console.log('Remove operation was passed');
+    },
+    onError(error) {
+      toast.success(error.message);
     },
   });
 
