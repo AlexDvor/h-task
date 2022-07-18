@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 export const useFetchUsers = () => {
   const { data, isLoading } = useQuery('/users', getDataUsers, {
     onSuccess() {
-      toast.success('User data was successfully updated');
+      if (data) toast.success('User data was successfully updated');
     },
   });
 
