@@ -3,17 +3,24 @@ import PaginationUsers from 'components/Pagination';
 import EditUserModal from 'components/EditUserModal';
 import ConfirmModal from 'components/ConfirmModal';
 import { useRemoveUsers } from 'hooks/useRemoveUser';
+import normalizeSearchQuery from 'helpers/normalizeSearchQuery';
 import AVA from '../../images/man.png';
 import './UserTable.css';
 
 export default function UsersTable({ usersData, isLoading }) {
   const { count, items } = usersData;
+  const { removeUserById } = useRemoveUsers();
+  const { userData, setUserData } = useState(null);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [currentUser, setCurrentUser] = useState({});
   const [postsPerPage] = useState(12);
+
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const { removeUserById } = useRemoveUsers();
+
+  const [filter, setFilter] = useState('');
+  const [filteredData, setFilteredData] = useState(null);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -36,6 +43,21 @@ export default function UsersTable({ usersData, isLoading }) {
     removeUserById(id);
     setShowConfirmModal(false);
   };
+
+  const handleFilter = e => {
+    const value = e.target.value;
+    if (value) {
+      setFilter(value);
+    } else {
+      setFilteredData(null);
+    }
+  };
+
+  const handleSubmitFilter = e => {
+    e.preventDefault();
+    const data = normalizeSearchQuery(filter, items);
+    setFilteredData(data);
+  };
   return (
     <>
       <div className="table-wrapper">
@@ -46,14 +68,16 @@ export default function UsersTable({ usersData, isLoading }) {
             </div>
 
             <div className="col-sm-4 form-wrapper">
-              <form className="d-flex">
+              <form className="d-flex" onSubmit={handleSubmitFilter}>
                 <input
-                  type="search"
+                  type="text"
                   placeholder="Search"
                   className="form-control"
                   aria-label="Search"
+                  name="filter"
+                  onChange={handleFilter}
                 />
-                <button type="button" className="btn btn-secondary search-btn">
+                <button type="submit" className="btn btn-secondary search-btn">
                   Search
                 </button>
               </form>
@@ -80,48 +104,49 @@ export default function UsersTable({ usersData, isLoading }) {
               </tr>
             </thead>
             <tbody>
-              {currentUsers.map((user, index) => (
-                <tr key={user.id} id={user.id}>
-                  <td>{index}</td>
-                  <td>
-                    <a href="#">
-                      <img src={AVA} className="avatar" alt="Avatar" width={25} />
-                      {`${user.name} ${user.surname}`}
-                    </a>
-                  </td>
-                  <td>{user.email}</td>
-                  <td>Publisher</td>
-                  <td>
-                    <span className="status text-success">&bull;</span>
-                    Active
-                  </td>
-                  <td>
-                    <div className="wrapper-buttons">
-                      <button
-                        className="edit-buttons settings"
-                        type="button"
-                        onClick={e => {
-                          setCurrentUser({ ...user });
-                          handleEditShow();
-                        }}
-                      >
-                        <i className="fa-solid fa-gear"></i>
-                      </button>
+              {currentUsers &&
+                currentUsers.map((user, index) => (
+                  <tr key={user.id} id={user.id}>
+                    <td>{index}</td>
+                    <td>
+                      <a href="#">
+                        <img src={AVA} className="avatar" alt="Avatar" width={25} />
+                        {`${user.name} ${user.surname}`}
+                      </a>
+                    </td>
+                    <td>{user.email}</td>
+                    <td>Publisher</td>
+                    <td>
+                      <span className="status text-success">&bull;</span>
+                      Active
+                    </td>
+                    <td>
+                      <div className="wrapper-buttons">
+                        <button
+                          className="edit-buttons settings"
+                          type="button"
+                          onClick={e => {
+                            setCurrentUser({ ...user });
+                            handleEditShow();
+                          }}
+                        >
+                          <i className="fa-solid fa-gear"></i>
+                        </button>
 
-                      <button
-                        className="remove-buttons delete"
-                        type="button"
-                        onClick={() => {
-                          setCurrentUser({ ...user });
-                          handleShow();
-                        }}
-                      >
-                        <i className="fa-solid fa-ban"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                        <button
+                          className="remove-buttons delete"
+                          type="button"
+                          onClick={() => {
+                            setCurrentUser({ ...user });
+                            handleShow();
+                          }}
+                        >
+                          <i className="fa-solid fa-ban"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
