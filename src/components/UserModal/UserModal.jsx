@@ -1,6 +1,6 @@
 import { Modal, Button } from 'react-bootstrap';
 
-export default function ConfirmModal({ isHidden, onCloseClick, user, text, onHandleClick }) {
+export default function UserModal({ user, isHidden, onCloseClick, onHandleClick }) {
   return (
     <>
       <Modal show={isHidden} onHide={onCloseClick} centered>
@@ -11,7 +11,7 @@ export default function ConfirmModal({ isHidden, onCloseClick, user, text, onHan
             </>
           )}
         </Modal.Header>
-        <Modal.Body className="text-center">{text}</Modal.Body>
+        <Modal.Body className="text-center">Test</Modal.Body>
         <Modal.Footer className="justify-content-center">
           <Button
             className="custom-button"

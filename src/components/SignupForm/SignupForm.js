@@ -79,7 +79,6 @@ export default function LoginForm() {
               <Form.Control.Feedback type="valid">Looks good!</Form.Control.Feedback>
             </InputGroup>
 
-            {/*  */}
             <InputGroup className={`${s.inputGroup}`}>
               <InputGroup.Text>
                 <i className="fas fa-envelope"></i>

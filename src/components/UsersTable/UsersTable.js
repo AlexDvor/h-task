@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import PaginationUsers from 'components/Pagination';
 import EditUserModal from 'components/EditUserModal';
 import ConfirmModal from 'components/ConfirmModal';
+import CreateUserModal from 'components/CreateUserModal';
 import { useRemoveUsers } from 'hooks/useRemoveUser';
 import normalizeSearchQuery from 'helpers/normalizeSearchQuery';
 import AVA from '../../images/man.png';
@@ -17,6 +18,7 @@ export default function UsersTable({ usersData, isLoading }) {
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   const [filter, setFilter] = useState('');
   const [filteredData, setFilteredData] = useState(null);
@@ -38,6 +40,9 @@ export default function UsersTable({ usersData, isLoading }) {
 
   const handleClose = () => setShowConfirmModal(false);
   const handleShow = () => setShowConfirmModal(true);
+
+  const handleShowCreateModal = () => setShowCreateModal(true);
+  const handleCloseCreateModal = () => setShowCreateModal(false);
 
   const handleEditClose = () => setShowEditModal(false);
   const handleEditShow = () => setShowEditModal(true);
@@ -92,7 +97,7 @@ export default function UsersTable({ usersData, isLoading }) {
             </div>
 
             <div className="col-sm-4">
-              <button className="btn btn-secondary" onClick={handleShow}>
+              <button className="btn btn-secondary" onClick={handleShowCreateModal}>
                 <i className="fa-solid fa-address-card"></i> <span>Add New User</span>
               </button>
             </div>
@@ -178,6 +183,7 @@ export default function UsersTable({ usersData, isLoading }) {
           user={currentUser}
           text="Are you sure you want to delete this user?"
         />
+        <CreateUserModal isHidden={showCreateModal} onCloseClick={handleCloseCreateModal} />
       </div>
     </>
   );

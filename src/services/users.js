@@ -17,3 +17,8 @@ export const updateUserByID = async ({ id, data }) => {
   const res = await axios.put(`users/${id}`, data);
   return res.data;
 };
+
+export const createNewUser = async data => {
+  const res = await axios.post(`users`, data);
+  return res.data;
+};

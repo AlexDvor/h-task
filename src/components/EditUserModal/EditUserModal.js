@@ -111,7 +111,7 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
               <Form.Check
                 type="checkbox"
                 onChange={e => setIsChecked(e.target.checked)}
-                label="Are you sure you want to change?"
+                label="Are you sure you want to change this user?"
               />
             </Form.Group>
 
