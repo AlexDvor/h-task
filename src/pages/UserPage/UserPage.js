@@ -12,7 +12,6 @@ export default function UserPage() {
   return (
     <>
       <NavBar />
-
       <div className={s.background} style={{ backgroundImage: `url(${img})` }}>
         <Container fluid="xl">
           {users && <UsersTable usersData={users} isLoading={isLoading} />}

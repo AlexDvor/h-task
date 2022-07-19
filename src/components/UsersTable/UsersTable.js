@@ -1,8 +1,10 @@
 import { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import PaginationUsers from 'components/Pagination';
 import EditUserModal from 'components/EditUserModal';
 import ConfirmModal from 'components/ConfirmModal';
 import CreateUserModal from 'components/CreateUserModal';
+import UserModal from 'components/UserModal';
 import { useRemoveUsers } from 'hooks/useRemoveUser';
 import normalizeSearchQuery from 'helpers/normalizeSearchQuery';
 import AVA from '../../images/man.png';
@@ -19,8 +21,10 @@ export default function UsersTable({ usersData, isLoading }) {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showUserModal, setShowUserModal] = useState(false);
 
   const [filter, setFilter] = useState('');
+  console.log('🚀 - filter', filter);
   const [filteredData, setFilteredData] = useState(null);
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -47,6 +51,9 @@ export default function UsersTable({ usersData, isLoading }) {
   const handleEditClose = () => setShowEditModal(false);
   const handleEditShow = () => setShowEditModal(true);
 
+  const handleUserClose = () => setShowUserModal(false);
+  const handleUserShow = () => setShowUserModal(true);
+
   const handleRemove = id => {
     removeUserById(id);
     setShowConfirmModal(false);
@@ -62,11 +69,13 @@ export default function UsersTable({ usersData, isLoading }) {
       setFilter(value);
     } else {
       setFilteredData(null);
+      setFilter('');
     }
   };
 
   const handleSubmitFilter = e => {
     e.preventDefault();
+    if (filter === '') return;
     const data = normalizeSearchQuery(filter, items);
     setFilteredData(data);
   };
@@ -122,10 +131,16 @@ export default function UsersTable({ usersData, isLoading }) {
                   <tr key={user.id} id={user.id}>
                     <td>{index}</td>
                     <td>
-                      <a href="#">
+                      <Link
+                        to="/user"
+                        onClick={() => {
+                          handleUserShow();
+                          setCurrentUser({ ...user });
+                        }}
+                      >
                         <img src={AVA} className="avatar" alt="Avatar" width={25} />
                         {`${user.name} ${user.surname}`}
-                      </a>
+                      </Link>
                     </td>
                     <td>{user.email}</td>
                     <td>Publisher</td>
@@ -184,6 +199,7 @@ export default function UsersTable({ usersData, isLoading }) {
           text="Are you sure you want to delete this user?"
         />
         <CreateUserModal isHidden={showCreateModal} onCloseClick={handleCloseCreateModal} />
+        <UserModal isHidden={showUserModal} onCloseClick={handleUserClose} user={currentUser} />
       </div>
     </>
   );
