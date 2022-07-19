@@ -24,7 +24,6 @@ export default function UsersTable({ usersData, isLoading }) {
   const [showUserModal, setShowUserModal] = useState(false);
 
   const [filter, setFilter] = useState('');
-  console.log('🚀 - filter', filter);
   const [filteredData, setFilteredData] = useState(null);
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -86,7 +85,7 @@ export default function UsersTable({ usersData, isLoading }) {
         <div className="table-title">
           <div className="row">
             <div className="col-sm-4">
-              <h2>{`Users : ${count}`}</h2>
+              <h2>{`Total Users : ${count}`}</h2>
             </div>
 
             <div className="col-sm-4 form-wrapper">
