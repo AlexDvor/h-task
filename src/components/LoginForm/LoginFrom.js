@@ -3,6 +3,7 @@ import { login } from 'services/auth';
 import { useAuthContext } from 'context/authContext';
 import { addTokenStorage } from 'helpers/TokenStorage';
 import { Form, Button, Spinner, Card, InputGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import s from './LoginForm.module.css';
 
 export default function LoginForm() {
@@ -123,12 +124,12 @@ export default function LoginForm() {
         <Card.Footer>
           <div className={`${s.links}`}>
             Don't have an account?
-            <Card.Link className={`${s.signUpLink}`} href="#">
+            <Link className={`${s.signUpLink}`} to="/signup">
               Sign Up
-            </Card.Link>
-            <Card.Link className={`${s.passwordLink}`} href="#">
+            </Link>
+            <Link className={`${s.passwordLink}`} to="/">
               Forgot your password?
-            </Card.Link>
+            </Link>
           </div>
         </Card.Footer>
       </Card>

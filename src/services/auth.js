@@ -20,16 +20,26 @@ export const login = async userData => {
     token.set(data.accessToken);
     return data;
   } catch (error) {
-    toast.error(error.message, toastAuthOptions);
+    const {
+      response: { data },
+    } = error;
+    toast.error(data.message, toastAuthOptions);
   }
 };
 
 export const signUp = async userData => {
   try {
-    const res = await axios.post('auth/sign-up', userData);
-    return res.data;
+    const response = await axios.post('auth/sign-up', userData);
+    if (response.status === 204) {
+      toast.success('User was created successfully', toastAuthOptions);
+      return true;
+    }
   } catch (error) {
-    toast.error(error.message, toastAuthOptions);
+    const {
+      response: { data },
+    } = error;
+
+    toast.error(data.message, toastAuthOptions);
   }
 };
 
@@ -40,4 +50,10 @@ export const logOut = () => {
   } catch (error) {
     toast.error(error.message, toastAuthOptions);
   }
+};
+
+export const getCurrentUser = () => {
+  try {
+    const response = axios.get('users/me');
+  } catch (error) {}
 };

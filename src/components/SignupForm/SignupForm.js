@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import { Form, Button, Spinner, Card, InputGroup } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { signUp } from 'services/auth';
+import { Link } from 'react-router-dom';
 import s from './SignupForm.module.css';
 
-export default function LoginForm() {
+export default function SignupForm() {
   const [name, setName] = useState('');
   const [surname, setSurName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -19,8 +23,14 @@ export default function LoginForm() {
       return;
     }
 
-    setLoading(true);
-    console.log({ name, surname, email, password });
+    try {
+      setLoading(true);
+      const response = await signUp({ name, surname, email, password });
+      if (response) navigate('/login', { replace: true });
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -143,12 +153,12 @@ export default function LoginForm() {
         <Card.Footer>
           <div className={`${s.links}`}>
             You are already registered?
-            <Card.Link className={`${s.signUpLink}`} href="#">
+            <Link to="/login" className={`${s.signUpLink}`}>
               Login
-            </Card.Link>
-            <Card.Link className={`${s.passwordLink}`} href="#">
+            </Link>
+            <Link to="/" className={`${s.passwordLink}`}>
               Forgot your password?
-            </Card.Link>
+            </Link>
           </div>
         </Card.Footer>
       </Card>
