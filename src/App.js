@@ -1,19 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AuthContext } from 'context/authContext';
 import { getTokenStorage } from 'helpers/TokenStorage';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
+import { getCurrentUser } from 'services/auth';
+import './App.css';
 
-//pages
 import SignUpPage from 'pages/SignUpPage';
 import LoginPage from 'pages/LogInPage/LoginPage';
 import UserPage from 'pages/UserPage';
-import './App.css';
 
 function App() {
   const [isAuth, setAuth] = useState(false);
   const [token, setToken] = useState(getTokenStorage);
+
+  useEffect(() => {
+    const refreshCurrentUser = async () => {
+      const response = await getCurrentUser();
+      if (!response) {
+        setToken('');
+        setAuth(false);
+      }
+    };
+
+    if (token) {
+      refreshCurrentUser();
+    }
+  }, [token]);
 
   return (
     <>

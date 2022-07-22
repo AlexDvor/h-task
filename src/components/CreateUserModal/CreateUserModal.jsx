@@ -8,7 +8,7 @@ export default function CreateUserModal({ isHidden, onCloseClick }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(false);
-  const { addUser, isCreating } = useCreateUser();
+  const { addUser } = useCreateUser();
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -19,7 +19,8 @@ export default function CreateUserModal({ isHidden, onCloseClick }) {
       return;
     }
     addUser({ name, surname, email, password });
-    // getDefaultValue();
+    onCloseClick();
+    getDefaultValue();
   };
 
   const getDefaultValue = () => {

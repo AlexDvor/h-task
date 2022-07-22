@@ -29,6 +29,7 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
       }
     }
     updateUser({ id: user.id, data: form });
+    onCloseClick();
   };
 
   const handleChange = e => {
