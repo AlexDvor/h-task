@@ -47,7 +47,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
 
           <Route
-            path="/user"
+            path="/users"
             element={
               <PrivateRoute hasToken={token}>
                 <UserPage />
@@ -55,7 +55,7 @@ function App() {
             }
           />
 
-          <Route path="/*" element={<Navigate to="/user" />} />
+          <Route path="/*" element={<Navigate to="/users" />} />
         </Routes>
       </AuthContext.Provider>
     </>

@@ -1,0 +1,9 @@
+.customBtn {
+  display: flex !important;
+  align-items: center !important;
+  max-width: 146px !important;
+}
+
+.wrapperIcon {
+  margin-left: 10px;
+}
