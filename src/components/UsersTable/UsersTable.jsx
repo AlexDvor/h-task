@@ -16,7 +16,7 @@ export default function UsersTable({ usersData, isLoading }) {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [currentUser, setCurrentUser] = useState({});
-  const [postsPerPage] = useState(12);
+  const [postsPerPage] = useState(21);
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
