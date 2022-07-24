@@ -1,6 +1,6 @@
 import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+// import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,7 +19,7 @@ export default function Providers({ children }) {
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
           <BrowserRouter>{children}</BrowserRouter>
-          <ReactQueryDevtools />
+          {/* <ReactQueryDevtools /> */}
         </QueryClientProvider>
       </ThemeProvider>
       <ToastContainer autoClose={3000} />
