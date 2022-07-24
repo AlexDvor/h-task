@@ -7,9 +7,10 @@ export const useCreateUser = id => {
   const { mutateAsync, isLoading } = useMutation(createNewUser, {
     onSuccess() {
       queryClient.invalidateQueries('/users');
-      toast.success('User was added successfully');
+      toast.success('User was successfully added');
     },
     onError(error) {
+      console.log('error useCreateUser', error);
       if (error.code === 'ERR_BAD_RESPONSE') toast.error('User with this email already exists');
       else toast.error(error.message);
     },

@@ -53,9 +53,6 @@ export const logOut = () => {
 };
 
 export const getCurrentUser = async () => {
-  // token.set(
-  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRhMjhmOThmLTllMWQtNDkyOC04MmNhLWY3ZGNlODk1MTRjNSIsImRhdGUiOiIyMDIyLTA3LTE5VDE0OjQ4OjAzLjc2MVoiLCJpYXQiOjE2NTgyNDIwODMsImV4cCI6MTY1ODMyODQ4M30.eFdmDoXplGt6HFSlMjiC_J3Mr5Mv59xdX3o8yv6UAKc',
-  // );
   try {
     const { data } = await axios.get('users/me');
     return data;

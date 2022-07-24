@@ -2,14 +2,7 @@ import { Modal, Button, FloatingLabel, Form } from 'react-bootstrap';
 import AVA from '../../images/man.png';
 import s from './UserModal.module.css';
 
-export default function UserModal({
-  user,
-  isHidden,
-  onCloseClick,
-  onHandleClick,
-  handleEditShow,
-  handleShow,
-}) {
+export default function UserModal({ user, isHidden, onCloseClick, onHandleClick }) {
   return (
     <>
       {user && (

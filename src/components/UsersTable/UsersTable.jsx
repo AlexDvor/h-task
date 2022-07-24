@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import SpinnerLoader from 'components/Spinner/Spinner';
 import PaginationUsers from 'components/Pagination';
 import EditUserModal from 'components/EditUserModal';
 import ConfirmModal from 'components/ConfirmModal';
@@ -112,7 +113,7 @@ export default function UsersTable({ usersData, isLoading }) {
           </div>
         </div>
 
-        <div className="table-responsive">
+        <div className="table-responsive" style={{ position: 'relative' }}>
           <table className="table table-striped table-hover">
             <thead>
               <tr>
@@ -125,13 +126,14 @@ export default function UsersTable({ usersData, isLoading }) {
               </tr>
             </thead>
             <tbody>
+              {isLoading && <SpinnerLoader />}
               {currentUsers &&
                 currentUsers.map((user, index) => (
                   <tr key={user.id} id={user.id}>
                     <td>{index}</td>
                     <td>
                       <Link
-                        to="/user"
+                        to="/users"
                         onClick={() => {
                           handleUserShow();
                           setCurrentUser({ ...user });

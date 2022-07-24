@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Form, Modal, Button } from 'react-bootstrap';
+import { Form, Modal, Spinner, Button } from 'react-bootstrap';
 import { useCreateUser } from 'hooks/useCreateUser';
+
+import s from './CreateUserModal.module.css';
 
 export default function CreateUserModal({ isHidden, onCloseClick }) {
   const [name, setName] = useState('');
@@ -8,9 +10,9 @@ export default function CreateUserModal({ isHidden, onCloseClick }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(false);
-  const { addUser } = useCreateUser();
+  const { addUser, isCreating } = useCreateUser();
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -18,9 +20,14 @@ export default function CreateUserModal({ isHidden, onCloseClick }) {
       setValidated(true);
       return;
     }
-    addUser({ name, surname, email, password });
-    onCloseClick();
-    getDefaultValue();
+
+    const response = await addUser({ name, surname, email, password });
+    if (response) {
+      onCloseClick();
+      getDefaultValue();
+    } else {
+      return;
+    }
   };
 
   const getDefaultValue = () => {
@@ -108,14 +115,22 @@ export default function CreateUserModal({ isHidden, onCloseClick }) {
             </Form.Group>
 
             <div className="d-flex justify-content-center">
-              <Button
-                variant="secondary"
-                type="submit"
-                className="custom-button"
-                // disabled={!isChecked}
-              >
-                Create
-              </Button>
+              {isCreating ? (
+                <Button variant="secondary" type="submit" className={`${s.isLoadingBtn}`} disabled>
+                  <Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" />
+                  Loading...
+                </Button>
+              ) : (
+                <Button
+                  variant="secondary"
+                  type="submit"
+                  className="custom-button"
+                  // disabled={!isChecked}
+                >
+                  Create
+                </Button>
+              )}
+
               <Button
                 className="ms-3 custom-button"
                 variant="secondary"

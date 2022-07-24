@@ -7,14 +7,14 @@ import img from '../../images/back-user.jpg';
 import s from './UserPage.module.css';
 
 export default function UserPage() {
-  const { users, isLoading } = useFetchUsers();
+  const { users, isFetchingUser } = useFetchUsers();
 
   return (
     <>
       <NavBar />
       <div className={s.background} style={{ backgroundImage: `url(${img})` }}>
         <Container fluid="xl">
-          {users && <UsersTable usersData={users} isLoading={isLoading} />}
+          {users && <UsersTable usersData={users} isLoading={isFetchingUser} />}
         </Container>
       </div>
       <Footer />
