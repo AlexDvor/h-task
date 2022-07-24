@@ -1,7 +1,7 @@
-import { Form, Modal, Button } from 'react-bootstrap';
-import './EditUserModal.css';
 import { useState, useEffect } from 'react';
+import { Form, Modal, Button } from 'react-bootstrap';
 import { useUpdateUsers } from 'hooks/useUpdateUser';
+import './EditUserModal.css';
 
 export default function EditUserModal({ isHidden, onCloseClick, user }) {
   const [isChecked, setIsChecked] = useState(false);
@@ -16,6 +16,7 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
 
   useEffect(() => {
     if (user) {
+      setIsChecked(false);
       setFormData(prevState => ({ ...prevState, ...user }));
     }
   }, [user]);
@@ -28,6 +29,7 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
         form[key] = formData[key];
       }
     }
+
     updateUser({ id: user.id, data: form });
     onCloseClick();
   };

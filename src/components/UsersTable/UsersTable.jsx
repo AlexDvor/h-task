@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import SpinnerLoader from 'components/Spinner/Spinner';
+import SpinnerPage from 'components/SpinnerPage/SpinnerPage';
 import PaginationUsers from 'components/Pagination';
 import EditUserModal from 'components/EditUserModal';
 import ConfirmModal from 'components/ConfirmModal';
@@ -126,7 +126,7 @@ export default function UsersTable({ usersData, isLoading }) {
               </tr>
             </thead>
             <tbody>
-              {isLoading && <SpinnerLoader />}
+              {isLoading && <SpinnerPage />}
               {currentUsers &&
                 currentUsers.map((user, index) => (
                   <tr key={user.id} id={user.id}>

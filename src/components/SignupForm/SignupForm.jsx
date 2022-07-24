@@ -3,6 +3,7 @@ import { Form, Button, Spinner, Card, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { signUp } from 'services/auth';
 import { Link } from 'react-router-dom';
+import LoaderButton from 'components/LoaderButton';
 import s from './SignupForm.module.css';
 
 export default function SignupForm() {
@@ -128,16 +129,7 @@ export default function SignupForm() {
             <div className={`${s.buttonsWrapper}`}>
               {isLoading ? (
                 <>
-                  <Button className={`${s.loginBtn} ${s.isLoadingBtn}`} type="submit" disabled>
-                    <Spinner
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                    Loading...
-                  </Button>
+                  <LoaderButton />
                 </>
               ) : (
                 <>

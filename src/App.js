@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { AuthContext } from 'context/authContext';
 import { getTokenStorage } from 'helpers/TokenStorage';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { getCurrentUser } from 'services/auth';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
-import { getCurrentUser } from 'services/auth';
 import './App.css';
 
 import SignUpPage from 'pages/SignUpPage';

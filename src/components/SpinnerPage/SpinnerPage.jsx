@@ -1,7 +1,7 @@
 import { Spinner } from 'react-bootstrap';
 import s from './Spinner.module.css';
 
-export default function SpinnerLoader() {
+export default function SpinnerPage() {
   return (
     <>
       <div className={s.wrapper}>

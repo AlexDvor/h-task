@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Modal, Spinner, Button } from 'react-bootstrap';
 import { useCreateUser } from 'hooks/useCreateUser';
-
+import LoaderButton from 'components/LoaderButton';
 import s from './CreateUserModal.module.css';
 
 export default function CreateUserModal({ isHidden, onCloseClick }) {
@@ -14,6 +14,7 @@ export default function CreateUserModal({ isHidden, onCloseClick }) {
 
   const handleSubmit = async event => {
     event.preventDefault();
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.stopPropagation();
@@ -25,8 +26,6 @@ export default function CreateUserModal({ isHidden, onCloseClick }) {
     if (response) {
       onCloseClick();
       getDefaultValue();
-    } else {
-      return;
     }
   };
 
@@ -116,17 +115,9 @@ export default function CreateUserModal({ isHidden, onCloseClick }) {
 
             <div className="d-flex justify-content-center">
               {isCreating ? (
-                <Button variant="secondary" type="submit" className={`${s.isLoadingBtn}`} disabled>
-                  <Spinner as="span" animation="grow" size="sm" role="status" aria-hidden="true" />
-                  Loading...
-                </Button>
+                <LoaderButton />
               ) : (
-                <Button
-                  variant="secondary"
-                  type="submit"
-                  className="custom-button"
-                  // disabled={!isChecked}
-                >
+                <Button variant="secondary" type="submit" className="custom-button">
                   Create
                 </Button>
               )}

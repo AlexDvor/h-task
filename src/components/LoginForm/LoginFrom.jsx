@@ -3,6 +3,7 @@ import { login } from 'services/auth';
 import { useAuthContext } from 'context/authContext';
 import { addTokenStorage } from 'helpers/TokenStorage';
 import { Form, Button, Spinner, Card, InputGroup } from 'react-bootstrap';
+import LoaderButton from 'components/LoaderButton';
 import { Link } from 'react-router-dom';
 import s from './LoginForm.module.css';
 
@@ -99,16 +100,7 @@ export default function LoginForm() {
             <div className={`${s.buttonsWrapper}`}>
               {isLoading ? (
                 <>
-                  <Button className={`${s.loginBtn} ${s.isLoadingBtn}`} type="submit" disabled>
-                    <Spinner
-                      as="span"
-                      animation="grow"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                    Loading...
-                  </Button>
+                  <LoaderButton />
                 </>
               ) : (
                 <>
