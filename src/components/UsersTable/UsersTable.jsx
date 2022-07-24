@@ -1,17 +1,16 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import SpinnerPage from 'components/SpinnerPage';
+import { useRemoveUsers } from 'hooks/useRemoveUser';
 import PaginationUsers from 'components/Pagination';
 import EditUserModal from 'components/EditUserModal';
 import ConfirmModal from 'components/ConfirmModal';
 import CreateUserModal from 'components/CreateUserModal';
 import UserModal from 'components/UserModal';
-import { useRemoveUsers } from 'hooks/useRemoveUser';
 import normalizeSearchQuery from 'helpers/normalizeSearchQuery';
 import AVA from '../../images/man.png';
 import './UserTable.css';
 
-export default function UsersTable({ usersData, isLoading }) {
+export default function UsersTable({ usersData }) {
   const { count, items } = usersData;
   const { removeUserById } = useRemoveUsers();
 
@@ -126,7 +125,6 @@ export default function UsersTable({ usersData, isLoading }) {
               </tr>
             </thead>
             <tbody>
-              {isLoading && <SpinnerPage />}
               {currentUsers &&
                 currentUsers.map((user, index) => (
                   <tr key={user.id} id={user.id}>
