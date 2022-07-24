@@ -1,5 +1,5 @@
 import { Spinner } from 'react-bootstrap';
-import s from './Spinner.module.css';
+import s from './SpinnerPage.module.css';
 
 export default function SpinnerPage() {
   return (
