@@ -50,7 +50,14 @@ function App() {
               }
             />
 
-            <Route path="/signup" element={<SignUpPage />} />
+            <Route
+              path="/signup"
+              element={
+                <PublicRoute hasToken={token} restricted>
+                  <SignUpPage />
+                </PublicRoute>
+              }
+            />
 
             <Route
               path="/users"
