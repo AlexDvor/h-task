@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { AuthContext } from 'context/authContext';
-import { getTokenStorage } from 'helpers/TokenStorage';
+import { authState } from 'helpers/authState';
 import { Routes, Route, Navigate } from 'react-router-dom';
+
 import { getCurrentUser } from 'services/auth';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
@@ -12,52 +13,58 @@ import LoginPage from 'pages/LogInPage/LoginPage';
 import UserPage from 'pages/UserPage';
 
 function App() {
-  const [isAuth, setAuth] = useState(false);
-  const [token, setToken] = useState(getTokenStorage);
+  const [isAuth, setAuth] = useState(authState.isAuthenticated);
+  const [token, setToken] = useState(authState.token);
+  const [isFetchingUser, setIsFetchingUser] = useState(false);
 
   useEffect(() => {
     const refreshCurrentUser = async () => {
+      setIsFetchingUser(true);
       const response = await getCurrentUser();
-      if (!response) {
-        setToken('');
+      if (response) {
+        setAuth(true);
+        setToken(authState.token);
+        setIsFetchingUser(false);
+      } else {
         setAuth(false);
+        setToken('');
+        setIsFetchingUser(false);
       }
     };
-
-    if (token) {
-      refreshCurrentUser();
-    }
-  }, [token]);
+    refreshCurrentUser();
+  }, []);
 
   return (
     <>
-      <AuthContext.Provider value={{ isAuth, setAuth, token, setToken }}>
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
+      {!isFetchingUser && (
+        <AuthContext.Provider value={{ isAuth, setAuth, token, setToken }}>
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" />} />
 
-          <Route
-            path="/login"
-            element={
-              <PublicRoute hasToken={token} restricted>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute hasToken={token} restricted>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
 
-          <Route
-            path="/users"
-            element={
-              <PrivateRoute hasToken={token}>
-                <UserPage />
-              </PrivateRoute>
-            }
-          />
+            <Route
+              path="/users"
+              element={
+                <PrivateRoute hasToken={token} isAuth={isAuth}>
+                  <UserPage />
+                </PrivateRoute>
+              }
+            />
 
-          <Route path="/*" element={<Navigate to="/users" />} />
-        </Routes>
-      </AuthContext.Provider>
+            <Route path="/*" element={<Navigate to="/users" />} />
+          </Routes>
+        </AuthContext.Provider>
+      )}
     </>
   );
 }

@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { login } from 'services/auth';
 import { useAuthContext } from 'context/authContext';
-import { addTokenStorage } from 'helpers/TokenStorage';
-import { Form, Button, Spinner, Card, InputGroup } from 'react-bootstrap';
+import { Form, Button, Card, InputGroup } from 'react-bootstrap';
 import LoaderButton from 'components/LoaderButton';
 import { Link } from 'react-router-dom';
 import s from './LoginForm.module.css';
@@ -20,7 +19,6 @@ export default function LoginForm() {
       const response = await login(data);
       setToken(response.accessToken);
       setAuth(true);
-      addTokenStorage(response.accessToken);
     } catch (error) {
       console.log(error);
     } finally {

@@ -1,9 +1,6 @@
 import axios from 'axios';
-import { getTokenStorage } from 'helpers/TokenStorage';
 
 export const getDataUsers = async () => {
-  const token = getTokenStorage();
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   const res = await axios('users');
   return res.data;
 };

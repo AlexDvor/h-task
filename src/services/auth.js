@@ -1,23 +1,14 @@
 import axios from 'axios';
-import { removeTokenStorage } from '../helpers/TokenStorage';
 import { toast } from 'react-toastify';
 import { toastAuthOptions } from '../helpers/toastAuthOptions';
+import { authState } from 'helpers/authState';
 
 axios.defaults.baseURL = 'http://51.38.51.187:5050/api/v1/';
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
 
 export const login = async userData => {
   try {
     const { data } = await axios.post('auth/log-in', userData);
-    token.set(data.accessToken);
+    authState.set(data.accessToken);
     return data;
   } catch (error) {
     const {
@@ -45,14 +36,16 @@ export const signUp = async userData => {
 
 export const logOut = () => {
   try {
-    token.unset();
-    removeTokenStorage();
+    authState.clear();
   } catch (error) {
     toast.error(error.message, toastAuthOptions);
   }
 };
 
 export const getCurrentUser = async () => {
+  const authToken = authState.get();
+  if (!authToken) return;
+
   try {
     const { data } = await axios.get('users/me');
     return data;
@@ -60,8 +53,8 @@ export const getCurrentUser = async () => {
     const {
       response: { data },
     } = error;
-    token.unset();
-    removeTokenStorage();
+
+    authState.clear();
     toast.error(data.message, toastAuthOptions);
   }
 };
