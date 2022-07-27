@@ -7,3 +7,17 @@
 .wrapperIcon {
   margin-left: 10px;
 }
+
+.navLink {
+  text-decoration: none;
+  color: white;
+}
+
+.navLink:not(:first-child) {
+  margin-left: 15px;
+}
+
+.navLink:hover,
+.navLink:focus {
+  color: #0d6efd;
+}

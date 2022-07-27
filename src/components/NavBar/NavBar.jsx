@@ -19,6 +19,10 @@ export default function NavBar() {
   const handleClose = () => setShowConfirmModal(false);
   const handleShow = () => setShowConfirmModal(true);
 
+  const activeStyle = {
+    color: '#299be4',
+  };
+
   return (
     <>
       <Navbar bg="light" expand="lg" className=" navbar-dark bg-dark">
@@ -28,11 +32,9 @@ export default function NavBar() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <NavLink
+                className={`${s.navLink}`}
                 to="/users"
-                style={isActive => ({
-                  color: isActive ? '#0d6efd' : 'blue',
-                  textDecoration: 'none',
-                })}
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
                 Users
               </NavLink>
