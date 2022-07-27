@@ -26,7 +26,7 @@ function App() {
         setToken(authState.token);
       } catch (error) {
         setAuth(false);
-        setToken('');
+        setToken(null);
       } finally {
         setIsFetchingUser(false);
       }
@@ -37,42 +37,44 @@ function App() {
 
   return (
     <>
-      {!isFetchingUser && (
-        <AuthContext.Provider value={{ isAuth, setAuth, token, setToken }}>
-          <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
+      <AuthContext.Provider value={{ isAuth, setAuth, token, setToken }}>
+        {!isFetchingUser && (
+          <>
+            <Routes>
+              <Route path="/" element={<Navigate to="/login" />} />
 
-            <Route
-              path="/login"
-              element={
-                <PublicRoute hasToken={token} restricted>
-                  <LoginPage />
-                </PublicRoute>
-              }
-            />
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute isAuth={isAuth} restricted>
+                    <LoginPage />
+                  </PublicRoute>
+                }
+              />
 
-            <Route
-              path="/signup"
-              element={
-                <PublicRoute hasToken={token} restricted>
-                  <SignUpPage />
-                </PublicRoute>
-              }
-            />
+              <Route
+                path="/signup"
+                element={
+                  <PublicRoute isAuth={isAuth} restricted>
+                    <SignUpPage />
+                  </PublicRoute>
+                }
+              />
 
-            <Route
-              path="/users"
-              element={
-                <PrivateRoute hasToken={token} isAuth={isAuth}>
-                  <UserPage />
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path="/users"
+                element={
+                  <PrivateRoute hasToken={token} isAuth={isAuth}>
+                    <UserPage />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route path="/*" element={<Navigate to="/users" />} />
-          </Routes>
-        </AuthContext.Provider>
-      )}
+              <Route path="/*" element={<Navigate to="/users" />} />
+            </Routes>
+          </>
+        )}
+      </AuthContext.Provider>
     </>
   );
 }

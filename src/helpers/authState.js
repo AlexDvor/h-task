@@ -2,17 +2,16 @@ import axios from 'axios';
 
 export const authState = {
   isAuthenticated: false,
-  token: '',
+  token: null,
 
   get() {
     const saved = localStorage.getItem('tokenApp');
     const token = JSON.parse(saved);
     if (token) {
       this.set(token);
-      this.isAuthenticated = true;
       return token;
     } else {
-      return '';
+      return null;
     }
   },
 
@@ -27,6 +26,6 @@ export const authState = {
     localStorage.setItem('tokenApp', JSON.stringify(''));
     axios.defaults.headers.common.Authorization = '';
     this.isAuthenticated = false;
-    this.token = '';
+    this.token = null;
   },
 };
