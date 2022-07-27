@@ -45,6 +45,9 @@
   .table-responsive {
     height: 50vh;
   }
+  .wrapper-status {
+    justify-content: start;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -170,10 +173,10 @@ table.table .avatar {
 
 .status {
   font-size: 30px;
-  margin: 2px 2px 0 0;
   display: inline-block;
   vertical-align: middle;
   line-height: 10px;
+  margin: 0px 3px 4px 0px;
 }
 
 .text-success {
@@ -279,4 +282,16 @@ table.table .avatar {
 .remove-buttons:hover,
 .remove-buttons:focus {
   color: rgb(134, 4, 4);
+}
+
+.wrapper-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrapper-status {
+    justify-content: start;
+  }
 }
