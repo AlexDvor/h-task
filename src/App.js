@@ -19,18 +19,19 @@ function App() {
 
   useEffect(() => {
     const refreshCurrentUser = async () => {
-      setIsFetchingUser(true);
-      const response = await getCurrentUser();
-      if (response) {
+      try {
+        setIsFetchingUser(true);
+        await getCurrentUser();
         setAuth(true);
         setToken(authState.token);
-        setIsFetchingUser(false);
-      } else {
+      } catch (error) {
         setAuth(false);
         setToken('');
+      } finally {
         setIsFetchingUser(false);
       }
     };
+
     refreshCurrentUser();
   }, []);
 

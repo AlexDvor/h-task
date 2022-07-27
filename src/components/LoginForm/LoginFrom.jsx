@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { login } from 'services/auth';
 import { useAuthContext } from 'context/authContext';
 import { Form, Button, Card, InputGroup } from 'react-bootstrap';
-import LoaderButton from 'components/LoaderButton';
 import { Link } from 'react-router-dom';
+import LoaderButton from 'components/LoaderButton';
 import s from './LoginForm.module.css';
 
 export default function LoginForm() {
