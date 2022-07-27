@@ -10,6 +10,10 @@ export default function NavBar() {
   const { setToken } = useAuthContext();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
+  const activeStyle = {
+    color: '#299be4',
+  };
+
   const handleLogout = () => {
     setShowConfirmModal(false);
     logOut();
@@ -18,10 +22,6 @@ export default function NavBar() {
 
   const handleClose = () => setShowConfirmModal(false);
   const handleShow = () => setShowConfirmModal(true);
-
-  const activeStyle = {
-    color: '#299be4',
-  };
 
   return (
     <>
