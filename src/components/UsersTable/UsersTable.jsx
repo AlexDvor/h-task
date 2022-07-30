@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { useRemoveUsers } from 'hooks/useRemoveUser';
+import { useRemoveUser } from 'hooks/useRemoveUser';
 import PaginationUsers from 'components/Pagination';
 import EditUserModal from 'components/EditUserModal';
 import ConfirmModal from 'components/ConfirmModal';
@@ -12,7 +12,7 @@ import './UserTable.css';
 
 export default function UsersTable({ usersData }) {
   const { count, items } = usersData;
-  const { removeUserById } = useRemoveUsers();
+  const { removeUserById } = useRemoveUser();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [currentUser, setCurrentUser] = useState({});

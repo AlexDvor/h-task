@@ -13,8 +13,8 @@ import LoginPage from 'pages/LogInPage/LoginPage';
 import UserPage from 'pages/UserPage';
 
 function App() {
-  const [isAuth, setAuth] = useState(authState.isAuthenticated);
-  const [token, setToken] = useState(authState.token);
+  const [isAuth, setAuth] = useState(false);
+  const [token, setToken] = useState(null);
   const [isFetchingUser, setIsFetchingUser] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function App() {
       try {
         setIsFetchingUser(true);
         await getCurrentUser();
-        setAuth(true);
+        setAuth(authState.isAuthenticated);
         setToken(authState.token);
       } catch (error) {
         setAuth(false);

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { removeUserByID } from 'services/users';
 import { toast } from 'react-toastify';
 
-export const useRemoveUsers = id => {
+export const useRemoveUser = id => {
   const queryClient = useQueryClient();
   const { mutateAsync, isLoading } = useMutation(removeUserByID, {
     onSuccess() {

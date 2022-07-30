@@ -7,7 +7,7 @@ import s from './NavBar.module.css';
 import ConfirmModal from 'components/ConfirmModal';
 
 export default function NavBar() {
-  const { setToken } = useAuthContext();
+  const { setToken, setAuth } = useAuthContext();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const activeStyle = {
@@ -17,7 +17,8 @@ export default function NavBar() {
   const handleLogout = () => {
     setShowConfirmModal(false);
     logOut();
-    setToken();
+    setToken(null);
+    setAuth(false);
   };
 
   const handleClose = () => setShowConfirmModal(false);
