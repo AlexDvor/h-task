@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Spinner, Card, InputGroup } from 'react-bootstrap';
+import { Form, Button, Card, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { signUp } from 'services/auth';
 import { Link } from 'react-router-dom';
