@@ -12,7 +12,7 @@ export default function UserModal({ user, isHidden, onCloseClick, onHandleClick 
             <img src={AVA} className="avatar" alt="Avatar" width={80} />
             <Modal.Title className={`${s.name}`}>{` ${user.name} ${user.surname}`}</Modal.Title>
             <p className={`${s.email}`}>{user.email}</p>
-            <p className={`${s.id}`}>Id: {user.id}</p>
+            <p className={`${s.id}`}>Id: {user._id}</p>
             <FloatingLabel controlId="floatingTextarea2" label="Email">
               <Form.Control
                 className={`${s.textarea}`}

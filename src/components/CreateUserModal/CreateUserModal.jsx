@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Form, Modal, Spinner, Button } from 'react-bootstrap';
+import { Form, Modal, Button } from 'react-bootstrap';
 import { useCreateUser } from 'hooks/useCreateUser';
+import { normalizeUserName } from 'helpers/normalizeUserName';
 import LoaderButton from 'components/LoaderButton';
-import s from './CreateUserModal.module.css';
 
 export default function CreateUserModal({ isHidden, onCloseClick }) {
   const [name, setName] = useState('');
@@ -21,11 +21,21 @@ export default function CreateUserModal({ isHidden, onCloseClick }) {
       setValidated(true);
       return;
     }
+    try {
+      const userData = {
+        name: normalizeUserName(name),
+        surname: normalizeUserName(surname),
+        email,
+        password,
+      };
 
-    const response = await addUser({ name, surname, email, password });
-    if (response) {
-      onCloseClick();
-      getDefaultValue();
+      const response = await addUser(userData);
+      if (response) {
+        onCloseClick();
+        getDefaultValue();
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   };
 

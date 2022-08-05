@@ -16,7 +16,7 @@ export default function ConfirmModal({ isHidden, onCloseClick, user, text, onHan
           <Button
             className="custom-button"
             variant="secondary"
-            onClick={user ? () => onHandleClick(user.id) : onHandleClick}
+            onClick={user ? () => onHandleClick(user._id) : onHandleClick}
           >
             Yes
           </Button>

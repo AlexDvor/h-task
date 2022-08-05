@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 import { toastAuthOptions } from '../helpers/toastAuthOptions';
 import { authState } from 'helpers/authState';
 
-axios.defaults.baseURL = 'http://51.38.51.187:5050/api/v1/';
+// axios.defaults.baseURL = 'http://localhost:4040/api/v1/';
+axios.defaults.baseURL = 'https://data-users-app.herokuapp.com/api/v1/';
 
 export const login = async userData => {
   try {
@@ -20,10 +21,10 @@ export const login = async userData => {
 
 export const signUp = async userData => {
   try {
-    const response = await axios.post('auth/sign-up', userData);
-    if (response.status === 204) {
+    const { data } = await axios.post('auth/sign-up', userData);
+    if (data.status === 'success') {
       toast.success('User was created successfully', toastAuthOptions);
-      return true;
+      return data;
     }
   } catch (error) {
     const {
@@ -34,8 +35,9 @@ export const signUp = async userData => {
   }
 };
 
-export const logOut = () => {
+export const logOut = async () => {
   try {
+    await axios.get('auth/log-out');
     authState.clear();
   } catch (error) {
     toast.error(error.message, toastAuthOptions);
@@ -47,7 +49,8 @@ export const getCurrentUser = async () => {
   if (!authToken) return;
 
   try {
-    const { data } = await axios.get('users/me');
+    const { data } = await axios.get('users/current');
+
     return data;
   } catch (error) {
     const {

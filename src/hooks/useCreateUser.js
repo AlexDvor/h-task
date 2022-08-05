@@ -10,7 +10,8 @@ export const useCreateUser = id => {
       toast.success('User was successfully added');
     },
     onError(error) {
-      if (error.code === 'ERR_BAD_RESPONSE') toast.error('User with this email already exists');
+      const { response } = error;
+      if (response.data.message) toast.error(response.data.message);
       else toast.error(error.message);
     },
   });

@@ -26,7 +26,7 @@ export default function LoginForm() {
     }
   };
 
-  const handleSubmit = event => {
+  const handleValidateForm = event => {
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -58,7 +58,7 @@ export default function LoginForm() {
         </Card.Header>
 
         <Card.Body>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form noValidate validated={validated} onSubmit={handleValidateForm}>
             <InputGroup className={`${s.inputGroup}`}>
               <InputGroup.Text>
                 <i className="fas fa-envelope"></i>

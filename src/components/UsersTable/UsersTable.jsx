@@ -11,7 +11,8 @@ import AVA from '../../images/man.png';
 import './UserTable.css';
 
 export default function UsersTable({ usersData }) {
-  const { count, items } = usersData;
+  const { data } = usersData;
+
   const { removeUserById } = useRemoveUser();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,11 +32,11 @@ export default function UsersTable({ usersData }) {
 
   const currentUsers = useMemo(() => {
     if (!filteredData) {
-      return items.slice(indexOfFirstPost, indexOfLastPost);
+      return data.slice(indexOfFirstPost, indexOfLastPost);
     } else {
       return filteredData;
     }
-  }, [filteredData, indexOfFirstPost, indexOfLastPost, items]);
+  }, [filteredData, indexOfFirstPost, indexOfLastPost, data]);
 
   const paginate = pageNum => setCurrentPage(pageNum);
   const nextPage = () => setCurrentPage(prevState => prevState + 1);
@@ -57,7 +58,7 @@ export default function UsersTable({ usersData }) {
     removeUserById(id);
     setShowConfirmModal(false);
     if (filteredData) {
-      const result = filteredData.filter(user => user.id !== id);
+      const result = filteredData.filter(user => user._id !== id);
       setFilteredData(result);
     }
   };
@@ -75,8 +76,8 @@ export default function UsersTable({ usersData }) {
   const handleSubmitFilter = e => {
     e.preventDefault();
     if (filter === '') return;
-    const data = normalizeSearchQuery(filter, items);
-    setFilteredData(data);
+    const normalizedQuery = normalizeSearchQuery(filter, data);
+    setFilteredData(normalizedQuery);
   };
 
   return (
@@ -85,7 +86,7 @@ export default function UsersTable({ usersData }) {
         <div className="table-title">
           <div className="row">
             <div className="col-sm-4">
-              <h2>{`Total Users : ${count}`}</h2>
+              <h2>{`Total Users : ${data.length}`}</h2>
             </div>
 
             <div className="col-sm-4 form-wrapper">
@@ -127,7 +128,7 @@ export default function UsersTable({ usersData }) {
             <tbody>
               {currentUsers &&
                 currentUsers.map((user, index) => (
-                  <tr key={user.id} id={user.id}>
+                  <tr key={user._id} id={user._id}>
                     <td>{index}</td>
                     <td>
                       <Link
@@ -183,7 +184,7 @@ export default function UsersTable({ usersData }) {
         {!filteredData && (
           <PaginationUsers
             postsPerPage={postsPerPage}
-            totalPosts={items.length}
+            totalPosts={data.length}
             paginate={paginate}
             nextPage={nextPage}
             prevPage={prevPage}

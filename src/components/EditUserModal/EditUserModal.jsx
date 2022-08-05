@@ -11,7 +11,7 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
     surname: '',
     email: '',
     password: '',
-    id: '',
+    _id: '',
   });
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
       }
     }
 
-    updateUser({ id: user.id, data: form });
+    updateUser({ id: user._id, data: form });
     onCloseClick();
   };
 
@@ -103,8 +103,9 @@ export default function EditUserModal({ isHidden, onCloseClick, user }) {
               <Form.Control
                 type="text"
                 placeholder="Enter new ID"
-                defaultValue={user.id}
+                defaultValue={user._id}
                 autoComplete="off"
+                disabled
                 name="id"
                 onChange={handleChange}
               />

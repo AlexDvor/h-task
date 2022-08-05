@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { signUp } from 'services/auth';
 import { Link } from 'react-router-dom';
 import LoaderButton from 'components/LoaderButton';
+import { normalizeUserName } from 'helpers/normalizeUserName';
 import s from './SignupForm.module.css';
 
 export default function SignupForm() {
@@ -18,6 +19,7 @@ export default function SignupForm() {
   const handleSubmit = async event => {
     event.preventDefault();
     const form = event.currentTarget;
+
     if (form.checkValidity() === false) {
       event.stopPropagation();
       setValidated(true);
@@ -26,7 +28,13 @@ export default function SignupForm() {
 
     try {
       setLoading(true);
-      const response = await signUp({ name, surname, email, password });
+      const userData = {
+        name: normalizeUserName(name),
+        surname: normalizeUserName(surname),
+        email,
+        password,
+      };
+      const response = await signUp(userData);
       if (response) navigate('/login', { replace: true });
     } catch (error) {
     } finally {
