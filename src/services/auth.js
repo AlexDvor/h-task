@@ -3,8 +3,9 @@ import { toast } from 'react-toastify';
 import { toastAuthOptions } from '../helpers/toastAuthOptions';
 import { authState } from 'helpers/authState';
 
+axios.defaults.baseURL = 'https://h-task.onrender.com/api/v1/';
 // axios.defaults.baseURL = 'http://localhost:4040/api/v1/';
-axios.defaults.baseURL = 'https://data-users-app.herokuapp.com/api/v1/';
+// axios.defaults.baseURL = 'https://data-users-app.herokuapp.com/api/v1/';
 
 export const login = async userData => {
   try {
